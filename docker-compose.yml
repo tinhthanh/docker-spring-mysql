@@ -1,0 +1,25 @@
+  mysql:
+   container_name: linh3-mysql
+   image: mysql/mysql-server:5.7
+   environment:
+    MYSQL_DATABASE: tmdt
+    MYSQL_ROOT_PASSWORD: 1234
+    MYSQL_ROOT_HOST: '%'
+   ports:
+   - "3306:3306"
+   volumes:
+   - ./db:/docker-entrypoint-initdb.d
+   restart: always  
+  web:
+    image: tomcat:latest
+    # Environment variables do not appear to be getting loaded the first time Tomcat starts!
+    environment:
+      JDBC_URL: jdbc:mysql://mysql:3306/tmdt?connectTimeout=0&amp;socketTimeout=0&amp;autoReconnect=true
+      JDBC_USER: example_db_user
+      JDBC_PASS: example_db_pass
+    ports:
+    - "80:8080"
+    volumes:
+    - ./tomcat/webapps:/usr/local/tomcat/webapps
+    links:
+      - mysql

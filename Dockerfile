@@ -1,0 +1,1 @@
+RUN mvn clean install

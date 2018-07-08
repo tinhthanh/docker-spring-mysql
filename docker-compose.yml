@@ -1,20 +1,34 @@
+version: '3.1'
+services:
   mysql:
    container_name: linh3-mysql
    image: mysql/mysql-server:5.7
    environment:
-    MYSQL_DATABASE: tmdt
+    MYSQL_DATABASE: internship
+    MYSQL_USER: user
+    MYSQL_PASSWORD: test
     MYSQL_ROOT_PASSWORD: 1234
     MYSQL_ROOT_HOST: '%'
    ports:
    - "3306:3306"
    volumes:
    - ./db:/docker-entrypoint-initdb.d
-   restart: always  
+   restart: always 
+  phpmyadmin:
+        image: phpmyadmin/phpmyadmin
+        links: 
+            - mysql:mysql
+        ports:
+            - 8000:80
+        environment:
+            MYSQL_USER: user
+            MYSQL_PASSWORD: test
+            MYSQL_ROOT_PASSWORD: 1234  
   web:
     image: tomcat:latest
     # Environment variables do not appear to be getting loaded the first time Tomcat starts!
     environment:
-      JDBC_URL: jdbc:mysql://mysql:3306/tmdt?connectTimeout=0&amp;socketTimeout=0&amp;autoReconnect=true
+      JDBC_URL: jdbc:mysql://mysql:3306/internship?connectTimeout=0&amp;socketTimeout=0&amp;autoReconnect=true
       JDBC_USER: example_db_user
       JDBC_PASS: example_db_pass
     ports:
@@ -23,3 +37,17 @@
     - ./tomcat/webapps:/usr/local/tomcat/webapps
     links:
       - mysql
+  redmine:
+    image: redmine
+    restart: always
+    ports:
+      - 8080:3000
+    environment:
+      REDMINE_DB_MYSQL: db
+      REDMINE_DB_PASSWORD: example
+  db:
+    image: mysql:5.7
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: example
+      MYSQL_DATABASE: redmine   

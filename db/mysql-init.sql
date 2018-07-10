@@ -1,9 +1,9 @@
 USE `internship` ;
 
 -- -----------------------------------------------------
--- Table `internship`.`drs_config_param`
+-- Table `drs_config_param`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `internship`.`drs_config_param` (
+CREATE TABLE IF NOT EXISTS `drs_config_param` (
   `config_key` VARCHAR(100) NOT NULL,
   `config_value` VARCHAR(500) NOT NULL,
   `config_description` VARCHAR(255) NULL DEFAULT NULL,
@@ -12,11 +12,12 @@ CREATE TABLE IF NOT EXISTS `internship`.`drs_config_param` (
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8;
 
+INSERT INTO `drs_config_param` VALUES ('jwt.app.name','InternProject','jwt issuer','2018-03-19 19:32:00'),('jwt.cookie.name','AUTH-TOKEN','jwt cookie name','2018-03-19 19:32:00'),('jwt.expiration.mobile','1000','time expire on mobile devide','2018-03-19 19:32:00'),('jwt.expiration.normal','6000','time expire on normal devide','2018-04-22 23:15:47'),('jwt.prefix','Bearer','jwt prefix','2018-03-21 15:35:07'),('jwt.request.header','Authorization','request header for authen','2018-03-19 19:32:00'),('jwt.route.authentication.path','auth','url for get auth and get jwt token','2018-04-08 17:31:39'),('jwt.route.authentication.refresh','refresh','url refresh jwt token','2018-04-08 17:31:39'),('jwt.secret','FeMwKxv7JYUABHpG6XI2jqxN2I8TonqqZWmbxbxFFOc=','jwt secret key (encrypt aes)','2018-04-04 17:09:05'),('mail.exchange.service.url','https://mail.pal.net.vn/ews/exchange.asmx','exchange url for exchange mail','2018-04-08 17:31:39'),('redmine.api_key','NEE0lJt7Jd39OQ9GCTK8Kw==','redmine api key (encrypt aes)','2018-04-04 17:09:05'),('redmine.password','zXC2N4POOow6RIDH3ofeLg==','redmine password (encrypt aes)','2018-04-04 17:09:05'),('redmine.server.url','https://redtest.pal.net.vn/','redmine server url','2018-03-25 23:04:12'),('redmine.username','dev_admin','redmine admine user name','2018-03-25 23:04:12'),('server.mail.password','siFWnsdmjOh5fg00DhBFHg==',' server mail password (encrypt aes)','2018-04-16 00:05:09'),('server.mail.username','noreply.tool@pal.net.vn','mail server user name','2018-04-16 00:05:09');
 
 -- -----------------------------------------------------
--- Table `internship`.`drs_user`
+-- Table `drs_user`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `internship`.`drs_user` (
+CREATE TABLE IF NOT EXISTS `drs_user` (
   `user_id` INT(11) NOT NULL AUTO_INCREMENT,
   `user_name` VARCHAR(50) NOT NULL,
   `email` VARCHAR(100) NOT NULL,
@@ -31,11 +32,12 @@ ENGINE = InnoDB
 AUTO_INCREMENT = 7
 DEFAULT CHARACTER SET = utf8;
 
+INSERT INTO `drs_user` VALUES (1,'alex.intern','alex.intern@pal.net.vn','$2a$12$Dzo/KXiykeMgxhSYOY4UyeNo7H0E7ybomsjJepfz9Z6Eedgh/vH3y','Alex Huỳnh ',1,'2018-04-23 15:02:01'),(2,'tyler.intern','tyler.intern@pal.net.vn','$2a$12$BvvUIz4G4Igx3C4TQp8nf.ceFAaRky0.2PrSoCL6VUxXsGwzU37DK','Tyler Trương',1,'2018-04-02 23:13:09'),(3,'ginny.intern','ginny.intern@pal.net.vn','$2a$12$Dzo/KXiykeMgxhSYOY4UyeNo7H0E7ybomsjJepfz9Z6Eedgh/vH3y','Ginny Nguyễn',1,'2018-04-24 00:15:28'),(4,'harry.intern','harry.intern@pal.net.vn','$2a$12$Dzo/KXiykeMgxhSYOY4UyeNo7H0E7ybomsjJepfz9Z6Eedgh/vH3y','Harry Luong',1,'2018-04-23 16:03:36'),(5,'nathan.intern','nathan.intern@pal.net.vn','$2a$12$zy1ieM6/oUvlYc0adPxzluUdTbXpBHD4K.eSiXXwytyJ8ucklUFMW','Nathan Nguyen',1,'2018-04-11 20:59:15'),(6,'dustin.intern','dustin.intern@pal.net.vn','$2a$12$Dzo/KXiykeMgxhSYOY4UyeNo7H0E7ybomsjJepfz9Z6Eedgh/vH3y','dustin Nguyen',1,'2018-04-23 14:59:02');
 
 -- -----------------------------------------------------
--- Table `internship`.`drs_custom_task`
+-- Table `drs_custom_task`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `internship`.`drs_custom_task` (
+CREATE TABLE IF NOT EXISTS `drs_custom_task` (
   `custom_task_id` INT(11) NOT NULL AUTO_INCREMENT,
   `task_name` VARCHAR(255) NOT NULL,
   `description` VARCHAR(255) NULL DEFAULT NULL,
@@ -48,7 +50,7 @@ CREATE TABLE IF NOT EXISTS `internship`.`drs_custom_task` (
   INDEX `fk_custom_task_drs_user_user_id_idx` (`user_id` ASC),
   CONSTRAINT `fk_custom_task_drs_user_user_id`
     FOREIGN KEY (`user_id`)
-    REFERENCES `internship`.`drs_user` (`user_id`)
+    REFERENCES `drs_user` (`user_id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB
@@ -57,9 +59,9 @@ DEFAULT CHARACTER SET = utf8;
 
 
 -- -----------------------------------------------------
--- Table `internship`.`drs_group_contact`
+-- Table `drs_group_contact`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `internship`.`drs_group_contact` (
+CREATE TABLE IF NOT EXISTS `drs_group_contact` (
   `group_contact_id` INT(11) NOT NULL AUTO_INCREMENT,
   `group_contact_name` VARCHAR(255) NULL DEFAULT NULL,
   `user_id` INT(11) NOT NULL,
@@ -72,9 +74,9 @@ DEFAULT CHARACTER SET = utf8;
 
 
 -- -----------------------------------------------------
--- Table `internship`.`drs_group_contact_content`
+-- Table `drs_group_contact_content`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `internship`.`drs_group_contact_content` (
+CREATE TABLE IF NOT EXISTS `drs_group_contact_content` (
   `group_contact_content_id` INT(11) NOT NULL AUTO_INCREMENT,
   `recipient_email` VARCHAR(255) NOT NULL,
   `recipient_action` TINYINT(3) NOT NULL COMMENT '1:to\n2:cc',
@@ -84,7 +86,7 @@ CREATE TABLE IF NOT EXISTS `internship`.`drs_group_contact_content` (
   INDEX `fk_drs_card_visit_content_drs_card_visit_card_visit_id_idx` (`group_contact_id` ASC),
   CONSTRAINT `fk_drs_group_contact_content_drs_group_contact_group_contact_id`
     FOREIGN KEY (`group_contact_id`)
-    REFERENCES `internship`.`drs_group_contact` (`group_contact_id`)
+    REFERENCES `drs_group_contact` (`group_contact_id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB
@@ -93,9 +95,9 @@ DEFAULT CHARACTER SET = utf8;
 
 
 -- -----------------------------------------------------
--- Table `internship`.`drs_issue_tracker`
+-- Table `drs_issue_tracker`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `internship`.`drs_issue_tracker` (
+CREATE TABLE IF NOT EXISTS `drs_issue_tracker` (
   `issue_tracker_id` INT(11) NOT NULL AUTO_INCREMENT,
   `user_name` VARCHAR(50) NOT NULL,
   `issue_id` INT(11) NOT NULL,
@@ -108,9 +110,9 @@ DEFAULT CHARACTER SET = utf8;
 
 
 -- -----------------------------------------------------
--- Table `internship`.`drs_role`
+-- Table `drs_role`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `internship`.`drs_role` (
+CREATE TABLE IF NOT EXISTS `drs_role` (
   `role_id` INT(11) NOT NULL AUTO_INCREMENT,
   `role_name` VARCHAR(50) NULL DEFAULT NULL,
   PRIMARY KEY (`role_id`),
@@ -119,33 +121,33 @@ ENGINE = InnoDB
 AUTO_INCREMENT = 3
 DEFAULT CHARACTER SET = utf8;
 
-
+INSERT INTO `drs_role` VALUES (2,'ROLE_ADMIN'),(1,'ROLE_USER');
 -- -----------------------------------------------------
--- Table `internship`.`drs_permission`
+-- Table `drs_permission`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `internship`.`drs_permission` (
+CREATE TABLE IF NOT EXISTS `drs_permission` (
   `user_id` INT(11) NOT NULL,
   `role_id` INT(11) NOT NULL,
   PRIMARY KEY (`user_id`, `role_id`),
   INDEX `fk_role_permission_idx` (`role_id` ASC),
   CONSTRAINT `fk_role_permission`
     FOREIGN KEY (`role_id`)
-    REFERENCES `internship`.`drs_role` (`role_id`)
+    REFERENCES `drs_role` (`role_id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_user_permission`
     FOREIGN KEY (`user_id`)
-    REFERENCES `internship`.`drs_user` (`user_id`)
+    REFERENCES `drs_user` (`user_id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8;
 
-
+INSERT INTO `drs_permission` VALUES (1,1),(2,1),(2,2),(3,1),(3,2),(4,1),(5,1),(6,1),(6,2);
 -- -----------------------------------------------------
--- Table `internship`.`drs_report`
+-- Table `drs_report`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `internship`.`drs_report` (
+CREATE TABLE IF NOT EXISTS `drs_report` (
   `report_id` INT(11) NOT NULL AUTO_INCREMENT,
   `report_subject` VARCHAR(255) NULL DEFAULT NULL,
   `report_type` TINYINT(4) NOT NULL COMMENT '1:save\n2:send\n',
@@ -157,7 +159,7 @@ CREATE TABLE IF NOT EXISTS `internship`.`drs_report` (
   INDEX `fk_reporter_report_reporter_user_idx` (`user_id` ASC),
   CONSTRAINT `fk_reporter_report_reporter_user`
     FOREIGN KEY (`user_id`)
-    REFERENCES `internship`.`drs_user` (`user_id`)
+    REFERENCES `drs_user` (`user_id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB
@@ -166,9 +168,9 @@ DEFAULT CHARACTER SET = utf8;
 
 
 -- -----------------------------------------------------
--- Table `internship`.`drs_report_privileges`
+-- Table `drs_report_privileges`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `internship`.`drs_report_privileges` (
+CREATE TABLE IF NOT EXISTS `drs_report_privileges` (
   `report_privileges_id` INT(11) NOT NULL AUTO_INCREMENT,
   `user_id` INT(11) NOT NULL,
   `user_report_name` VARCHAR(45) NULL DEFAULT NULL,
@@ -183,9 +185,9 @@ DEFAULT CHARACTER SET = utf8;
 
 
 -- -----------------------------------------------------
--- Table `internship`.`drs_report_recipient`
+-- Table `drs_report_recipient`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `internship`.`drs_report_recipient` (
+CREATE TABLE IF NOT EXISTS `drs_report_recipient` (
   `report_recipient_id` INT(11) NOT NULL AUTO_INCREMENT,
   `report_recipient_email` VARCHAR(255) NOT NULL,
   `report_recipient_action` TINYINT(3) NOT NULL COMMENT '1:to\n2:cc',
@@ -195,7 +197,7 @@ CREATE TABLE IF NOT EXISTS `internship`.`drs_report_recipient` (
   INDEX `fk_drs_report_recipient_drs_report_report_id_idx` (`report_id` ASC),
   CONSTRAINT `fk_drs_report_recipient_drs_report_report_id`
     FOREIGN KEY (`report_id`)
-    REFERENCES `internship`.`drs_report` (`report_id`)
+    REFERENCES `drs_report` (`report_id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB
@@ -204,9 +206,9 @@ DEFAULT CHARACTER SET = utf8;
 
 
 -- -----------------------------------------------------
--- Table `internship`.`drs_task`
+-- Table `drs_task`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `internship`.`drs_task` (
+CREATE TABLE IF NOT EXISTS `drs_task` (
   `task_id` INT(11) NOT NULL AUTO_INCREMENT,
   `task_name` TEXT NULL DEFAULT NULL,
   `description` TEXT NULL DEFAULT NULL,
@@ -220,7 +222,7 @@ CREATE TABLE IF NOT EXISTS `internship`.`drs_task` (
   INDEX `fk_reporter_task_reporter_report_report_id_idx` (`report_id` ASC),
   CONSTRAINT `fk_reporter_task_reporter_report_report_id`
     FOREIGN KEY (`report_id`)
-    REFERENCES `internship`.`drs_report` (`report_id`)
+    REFERENCES `drs_report` (`report_id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB
@@ -234,8 +236,8 @@ USE `internship` ;
 -- -----------------------------------------------------
 
 DELIMITER $$
-USE `internship`$$
-CREATE DEFINER=`internship`@`%` PROCEDURE `up_DRSCheckCustomTaskDeleted`(IN p_id INT(11))
+ 
+CREATE   PROCEDURE `up_DRSCheckCustomTaskDeleted`(IN p_id INT(11))
 BEGIN
 SELECT count(custom_task_id)
 FROM drs_custom_task
@@ -251,8 +253,8 @@ DELIMITER ;
 -- -----------------------------------------------------
 
 DELIMITER $$
-USE `internship`$$
-CREATE DEFINER=`internship`@`%` PROCEDURE `up_DRSCheckOwnerCustomTask`( 
+ 
+CREATE   PROCEDURE `up_DRSCheckOwnerCustomTask`( 
 				IN p_user_id INT(11), 
 				IN p_custom_task_id int(11))
 BEGIN
@@ -267,8 +269,8 @@ DELIMITER ;
 -- -----------------------------------------------------
 
 DELIMITER $$
-USE `internship`$$
-CREATE DEFINER=`internship`@`%` PROCEDURE `up_DRSCreateCustomTask`(
+ 
+CREATE   PROCEDURE `up_DRSCreateCustomTask`(
 					IN p_task_name VARCHAR(255), 
 					IN p_description VARCHAR(255), 
 					IN p_target_date DATE, 
@@ -288,8 +290,8 @@ DELIMITER ;
 -- -----------------------------------------------------
 
 DELIMITER $$
-USE `internship`$$
-CREATE DEFINER=`internship`@`%` PROCEDURE `up_DRSCreateIssueTracker`(IN p_user_name VARCHAR(50),IN p_issue_id INT,IN p_update_time DATETIME,OUT p_issue_track_id INT)
+ 
+CREATE   PROCEDURE `up_DRSCreateIssueTracker`(IN p_user_name VARCHAR(50),IN p_issue_id INT,IN p_update_time DATETIME,OUT p_issue_track_id INT)
 BEGIN
 	SET @issue_tracker_id =-1;
     
@@ -315,8 +317,8 @@ DELIMITER ;
 -- -----------------------------------------------------
 
 DELIMITER $$
-USE `internship`$$
-CREATE DEFINER=`internship`@`%` PROCEDURE `up_DRSDeleteCustomTask`(IN p_id INT(11))
+ 
+CREATE   PROCEDURE `up_DRSDeleteCustomTask`(IN p_id INT(11))
 BEGIN
 update drs_custom_task set custom_task_status = 0 WHERE custom_task_id = p_id; 
 END$$
@@ -328,8 +330,8 @@ DELIMITER ;
 -- -----------------------------------------------------
 
 DELIMITER $$
-USE `internship`$$
-CREATE DEFINER=`internship`@`%` PROCEDURE `up_DRSDeleteReport`(IN reportId INT)
+ 
+CREATE   PROCEDURE `up_DRSDeleteReport`(IN reportId INT)
 BEGIN
 UPDATE drs_report
 SET report_status = 0
@@ -345,8 +347,8 @@ DELIMITER ;
 -- -----------------------------------------------------
 
 DELIMITER $$
-USE `internship`$$
-CREATE DEFINER=`internship`@`%` PROCEDURE `up_DRSGetAllConfigParam`()
+ 
+CREATE   PROCEDURE `up_DRSGetAllConfigParam`()
 BEGIN
 SELECT c.config_key,
        c.config_value
@@ -360,8 +362,8 @@ DELIMITER ;
 -- -----------------------------------------------------
 
 DELIMITER $$
-USE `internship`$$
-CREATE DEFINER=`internship`@`%` PROCEDURE `up_DRSGetAllGcByUserIdAndStatus`(IN p_page_number INT, IN p_page_size INT, IN p_user_id INT, IN p_group_contact_status TINYINT(1),OUT p_total_record INT)
+ 
+CREATE   PROCEDURE `up_DRSGetAllGcByUserIdAndStatus`(IN p_page_number INT, IN p_page_size INT, IN p_user_id INT, IN p_group_contact_status TINYINT(1),OUT p_total_record INT)
 BEGIN
 DECLARE v_start INT;
 DECLARE v_total_records INT;
@@ -391,8 +393,8 @@ DELIMITER ;
 -- -----------------------------------------------------
 
 DELIMITER $$
-USE `internship`$$
-CREATE DEFINER=`internship`@`%` PROCEDURE `up_DRSGetAllIssueTrackerByUserNameAndDate`(IN p_user_name VARCHAR(50),IN p_update_time DATE)
+ 
+CREATE   PROCEDURE `up_DRSGetAllIssueTrackerByUserNameAndDate`(IN p_user_name VARCHAR(50),IN p_update_time DATE)
 BEGIN
 SELECT issue_tracker_id AS issueTrackerId,
 		user_name       AS userName,
@@ -413,8 +415,8 @@ DELIMITER ;
 -- -----------------------------------------------------
 
 DELIMITER $$
-USE `internship`$$
-CREATE DEFINER=`internship`@`%` PROCEDURE `up_DRSGetCustomTask`(IN p_user_id INT(11), IN p_custom_task_status TINYINT(1))
+ 
+CREATE   PROCEDURE `up_DRSGetCustomTask`(IN p_user_id INT(11), IN p_custom_task_status TINYINT(1))
 BEGIN
 SELECT custom_task_id,
        task_name,
@@ -432,8 +434,8 @@ DELIMITER ;
 -- -----------------------------------------------------
 
 DELIMITER $$
-USE `internship`$$
-CREATE DEFINER=`internship`@`%` PROCEDURE `up_DRSGetCustomTaskByID`(IN p_id INT(11))
+ 
+CREATE   PROCEDURE `up_DRSGetCustomTaskByID`(IN p_id INT(11))
 BEGIN
 SELECT custom_task_id,
        task_name,
@@ -452,8 +454,8 @@ DELIMITER ;
 -- -----------------------------------------------------
 
 DELIMITER $$
-USE `internship`$$
-CREATE DEFINER=`internship`@`%` PROCEDURE `up_DRSGetCustomTaskByUserId`(IN p_user_id INT)
+ 
+CREATE   PROCEDURE `up_DRSGetCustomTaskByUserId`(IN p_user_id INT)
 BEGIN
 SELECT custom_task_id,
        task_name,
@@ -473,8 +475,8 @@ DELIMITER ;
 -- -----------------------------------------------------
 
 DELIMITER $$
-USE `internship`$$
-CREATE DEFINER=`internship`@`%` PROCEDURE `up_DRSGetGcByIdAndStatus`(IN p_group_contact_id INT,IN p_group_contact_status TINYINT(1))
+ 
+CREATE   PROCEDURE `up_DRSGetGcByIdAndStatus`(IN p_group_contact_id INT,IN p_group_contact_status TINYINT(1))
 BEGIN
 SELECT gc.group_contact_id,
        gc.group_contact_name
@@ -490,8 +492,8 @@ DELIMITER ;
 -- -----------------------------------------------------
 
 DELIMITER $$
-USE `internship`$$
-CREATE DEFINER=`internship`@`%` PROCEDURE `up_DRSGetGccByGcIdAndStatus`(IN p_group_contact_id INT,IN p_group_contact_content_status TINYINT(1))
+ 
+CREATE   PROCEDURE `up_DRSGetGccByGcIdAndStatus`(IN p_group_contact_id INT,IN p_group_contact_content_status TINYINT(1))
 BEGIN
 SELECT gcc.group_contact_content_id,
        gcc.recipient_email,
@@ -509,8 +511,8 @@ DELIMITER ;
 -- -----------------------------------------------------
 
 DELIMITER $$
-USE `internship`$$
-CREATE DEFINER=`internship`@`%` PROCEDURE `up_DRSGetGccByIdAndStatus`(IN p_group_contact_content_id INT,IN group_contact_content_status TINYINT(1))
+ 
+CREATE   PROCEDURE `up_DRSGetGccByIdAndStatus`(IN p_group_contact_content_id INT,IN group_contact_content_status TINYINT(1))
 BEGIN
 SELECT gcc.group_contact_content_id,
        gcc.recipient_email,
@@ -528,8 +530,8 @@ DELIMITER ;
 -- -----------------------------------------------------
 
 DELIMITER $$
-USE `internship`$$
-CREATE DEFINER=`internship`@`%` PROCEDURE `up_DRSGetGccByIdWithAllStatus`(IN p_group_contact_content_id INT)
+ 
+CREATE   PROCEDURE `up_DRSGetGccByIdWithAllStatus`(IN p_group_contact_content_id INT)
 BEGIN
 SELECT gcc.group_contact_content_id,
        gcc.recipient_email,
@@ -545,8 +547,8 @@ DELIMITER ;
 -- -----------------------------------------------------
 
 DELIMITER $$
-USE `internship`$$
-CREATE DEFINER=`internship`@`%` PROCEDURE `up_DRSGetIssueTrackerByUserNameAndDate`(IN p_user_name VARCHAR(50),IN p_update_time DATE,IN p_page_number INT,IN p_page_size INT,OUT p_total_records INT)
+ 
+CREATE   PROCEDURE `up_DRSGetIssueTrackerByUserNameAndDate`(IN p_user_name VARCHAR(50),IN p_update_time DATE,IN p_page_number INT,IN p_page_size INT,OUT p_total_records INT)
 BEGIN
 	
 DECLARE v_start INT;
@@ -583,8 +585,8 @@ DELIMITER ;
 -- -----------------------------------------------------
 
 DELIMITER $$
-USE `internship`$$
-CREATE DEFINER=`internship`@`%` PROCEDURE `up_DRSGetListRoleByUserID`(IN p_user_id INT)
+ 
+CREATE   PROCEDURE `up_DRSGetListRoleByUserID`(IN p_user_id INT)
 BEGIN
 SELECT r.role_id,
        r.role_name
@@ -600,8 +602,8 @@ DELIMITER ;
 -- -----------------------------------------------------
 
 DELIMITER $$
-USE `internship`$$
-CREATE DEFINER=`internship`@`%` PROCEDURE `up_DRSGetListTaskByReportId`(IN p_report_id INT)
+ 
+CREATE   PROCEDURE `up_DRSGetListTaskByReportId`(IN p_report_id INT)
 BEGIN
 SELECT t.task_id,t.task_name,t.description,t.target_date,t.task_status,t.remark,t.task_date_defined 
 FROM drs_task t 
@@ -617,8 +619,8 @@ DELIMITER ;
 -- -----------------------------------------------------
 
 DELIMITER $$
-USE `internship`$$
-CREATE DEFINER=`internship`@`%` PROCEDURE `up_DRSGetRecipientsByReportID`(IN p_report_id INT)
+ 
+CREATE   PROCEDURE `up_DRSGetRecipientsByReportID`(IN p_report_id INT)
 BEGIN
 SELECT re.report_recipient_email,
        re.report_recipient_action
@@ -634,8 +636,8 @@ DELIMITER ;
 -- -----------------------------------------------------
 
 DELIMITER $$
-USE `internship`$$
-CREATE DEFINER=`internship`@`%` PROCEDURE `up_DRSGetReportById`(IN p_report_id INT)
+ 
+CREATE   PROCEDURE `up_DRSGetReportById`(IN p_report_id INT)
 BEGIN
 SELECT r.report_id,
        r.report_subject,
@@ -653,8 +655,8 @@ DELIMITER ;
 -- -----------------------------------------------------
 
 DELIMITER $$
-USE `internship`$$
-CREATE DEFINER=`internship`@`%` PROCEDURE `up_DRSGetReportByUserIdAndReportType`(IN p_user_id INT,IN p_report_type TINYINT(4))
+ 
+CREATE   PROCEDURE `up_DRSGetReportByUserIdAndReportType`(IN p_user_id INT,IN p_report_type TINYINT(4))
 BEGIN
 SELECT r.report_id,
        r.report_subject,
@@ -674,8 +676,8 @@ DELIMITER ;
 -- -----------------------------------------------------
 
 DELIMITER $$
-USE `internship`$$
-CREATE DEFINER=`internship`@`%` PROCEDURE `up_DRSGetReportByUserIdAndReportTypeWithPaging`(IN p_user_id INT,IN p_report_type INT,IN p_page_numer INT ,IN p_page_size INT,OUT p_total_record INT)
+ 
+CREATE   PROCEDURE `up_DRSGetReportByUserIdAndReportTypeWithPaging`(IN p_user_id INT,IN p_report_type INT,IN p_page_numer INT ,IN p_page_size INT,OUT p_total_record INT)
 BEGIN
 DECLARE v_start INT;
 DECLARE v_total_records INT;
@@ -706,8 +708,8 @@ DELIMITER ;
 -- -----------------------------------------------------
 
 DELIMITER $$
-USE `internship`$$
-CREATE DEFINER=`internship`@`%` PROCEDURE `up_DRSGetTaskWithId`(IN p_task_id INT)
+ 
+CREATE   PROCEDURE `up_DRSGetTaskWithId`(IN p_task_id INT)
 BEGIN
 			SELECT t.task_id,
 			   t.task_name,
@@ -730,8 +732,8 @@ DELIMITER ;
 -- -----------------------------------------------------
 
 DELIMITER $$
-USE `internship`$$
-CREATE DEFINER=`internship`@`%` PROCEDURE `up_DRSGetTaskWithIdAndStatus`(IN p_task_id INT,IN p_task_delete_status TINYINT(1))
+ 
+CREATE   PROCEDURE `up_DRSGetTaskWithIdAndStatus`(IN p_task_id INT,IN p_task_delete_status TINYINT(1))
 BEGIN
 SELECT t.task_id,
 			   t.task_name,
@@ -754,8 +756,8 @@ DELIMITER ;
 -- -----------------------------------------------------
 
 DELIMITER $$
-USE `internship`$$
-CREATE DEFINER=`internship`@`%` PROCEDURE `up_DRSGetUserByEmail`(IN p_email VARCHAR(100))
+ 
+CREATE   PROCEDURE `up_DRSGetUserByEmail`(IN p_email VARCHAR(100))
 BEGIN
 SELECT u.user_id,
        u.user_name,
@@ -774,8 +776,8 @@ DELIMITER ;
 -- -----------------------------------------------------
 
 DELIMITER $$
-USE `internship`$$
-CREATE DEFINER=`internship`@`%` PROCEDURE `up_DRSGetUserById`(IN p_user_id INT)
+ 
+CREATE   PROCEDURE `up_DRSGetUserById`(IN p_user_id INT)
 BEGIN
 SELECT u.user_id,
        u.user_name,
@@ -794,8 +796,8 @@ DELIMITER ;
 -- -----------------------------------------------------
 
 DELIMITER $$
-USE `internship`$$
-CREATE DEFINER=`internship`@`%` PROCEDURE `up_DRSGetUserByUserName`(IN p_username VARCHAR(50))
+ 
+CREATE   PROCEDURE `up_DRSGetUserByUserName`(IN p_username VARCHAR(50))
 BEGIN
 SELECT u.user_id,
        u.user_name,
@@ -814,8 +816,8 @@ DELIMITER ;
 -- -----------------------------------------------------
 
 DELIMITER $$
-USE `internship`$$
-CREATE DEFINER=`internship`@`%` PROCEDURE `up_DRSGetUserInfo`(IN p_user_id INT)
+ 
+CREATE   PROCEDURE `up_DRSGetUserInfo`(IN p_user_id INT)
 BEGIN
 SELECT u.user_name,
        u.email,
@@ -831,8 +833,8 @@ DELIMITER ;
 -- -----------------------------------------------------
 
 DELIMITER $$
-USE `internship`$$
-CREATE DEFINER=`internship`@`%` PROCEDURE `up_DRSIsGcOwner`(IN p_group_contact_id INT,p_user_id INT)
+ 
+CREATE   PROCEDURE `up_DRSIsGcOwner`(IN p_group_contact_id INT,p_user_id INT)
 BEGIN
 SELECT EXISTS
   (SELECT 1
@@ -848,8 +850,8 @@ DELIMITER ;
 -- -----------------------------------------------------
 
 DELIMITER $$
-USE `internship`$$
-CREATE DEFINER=`internship`@`%` PROCEDURE `up_DRSIsGccOwner`(IN p_group_contact_content_id INT,IN p_user_id INT,IN p_group_contact_status TINYINT(1), IN p_group_contact_content_status TINYINT(1))
+ 
+CREATE   PROCEDURE `up_DRSIsGccOwner`(IN p_group_contact_content_id INT,IN p_user_id INT,IN p_group_contact_status TINYINT(1), IN p_group_contact_content_status TINYINT(1))
 BEGIN
 SELECT EXISTS
   (SELECT 1
@@ -867,8 +869,8 @@ DELIMITER ;
 -- -----------------------------------------------------
 
 DELIMITER $$
-USE `internship`$$
-CREATE DEFINER=`internship`@`%` PROCEDURE `up_DRSIsGccOwnerWithAllStatus`(IN p_group_contact_content_id INT,IN p_user_id INT)
+ 
+CREATE   PROCEDURE `up_DRSIsGccOwnerWithAllStatus`(IN p_group_contact_content_id INT,IN p_user_id INT)
 BEGIN
 SELECT EXISTS
   (SELECT 1
@@ -885,8 +887,8 @@ DELIMITER ;
 -- -----------------------------------------------------
 
 DELIMITER $$
-USE `internship`$$
-CREATE DEFINER=`internship`@`%` PROCEDURE `up_DRSIsReportOwner`(IN p_user_id INT,IN p_report_type INT)
+ 
+CREATE   PROCEDURE `up_DRSIsReportOwner`(IN p_user_id INT,IN p_report_type INT)
 BEGIN
 SELECT (EXISTS (SELECT 1 FROM drs_report r WHERE r.user_id=p_user_id AND r.report_id =p_report_type)); END$$
 
@@ -897,8 +899,8 @@ DELIMITER ;
 -- -----------------------------------------------------
 
 DELIMITER $$
-USE `internship`$$
-CREATE DEFINER=`internship`@`%` PROCEDURE `up_DRSIsTaskOwner`(IN p_task_id INT, IN p_user_id INT)
+ 
+CREATE   PROCEDURE `up_DRSIsTaskOwner`(IN p_task_id INT, IN p_user_id INT)
 BEGIN
 SELECT EXISTS
   (SELECT 1
@@ -915,8 +917,8 @@ DELIMITER ;
 -- -----------------------------------------------------
 
 DELIMITER $$
-USE `internship`$$
-CREATE DEFINER=`internship`@`%` PROCEDURE `up_DRSReportFromUserByDate`(
+ 
+CREATE   PROCEDURE `up_DRSReportFromUserByDate`(
 IN p_user_id INT(11),
 IN p_page INT, 
 IN p_page_size INT, 
@@ -953,8 +955,8 @@ DELIMITER ;
 -- -----------------------------------------------------
 
 DELIMITER $$
-USE `internship`$$
-CREATE DEFINER=`internship`@`%` PROCEDURE `up_DRSUpdateCustomTask`(IN p_custom_task_id INT(11),
+ 
+CREATE   PROCEDURE `up_DRSUpdateCustomTask`(IN p_custom_task_id INT(11),
 					IN p_task_name VARCHAR(255), 
 					IN p_description VARCHAR(255), 
 					IN p_target_date DATE, 
@@ -974,8 +976,8 @@ DELIMITER ;
 -- -----------------------------------------------------
 
 DELIMITER $$
-USE `internship`$$
-CREATE DEFINER=`internship`@`%` PROCEDURE `up_DRSUpdateReport`(IN reportId INT, IN reportSubject VARCHAR(255), IN reportType TINYINT(4), IN dataEtc VARCHAR(255))
+ 
+CREATE   PROCEDURE `up_DRSUpdateReport`(IN reportId INT, IN reportSubject VARCHAR(255), IN reportType TINYINT(4), IN dataEtc VARCHAR(255))
 BEGIN
 UPDATE drs_report
 SET report_subject = reportSubject,
@@ -992,8 +994,8 @@ DELIMITER ;
 -- -----------------------------------------------------
 
 DELIMITER $$
-USE `internship`$$
-CREATE DEFINER=`internship`@`%` PROCEDURE `up_DRSUpdateTask`(
+ 
+CREATE   PROCEDURE `up_DRSUpdateTask`(
 IN p_task_name TEXT, 
 IN p_description TEXT, 
 IN p_target_date DATE, 
@@ -1019,8 +1021,8 @@ DELIMITER ;
 -- -----------------------------------------------------
 
 DELIMITER $$
-USE `internship`$$
-CREATE DEFINER=`internship`@`%` PROCEDURE `up_DSRCreateGroupContact`(IN p_group_contact_name VARCHAR(255),
+ 
+CREATE   PROCEDURE `up_DSRCreateGroupContact`(IN p_group_contact_name VARCHAR(255),
 																	 IN p_user_id INT, 
                                                                      OUT result INT)
 BEGIN
@@ -1042,8 +1044,8 @@ DELIMITER ;
 -- -----------------------------------------------------
 
 DELIMITER $$
-USE `internship`$$
-CREATE DEFINER=`internship`@`%` PROCEDURE `up_DSRCreateGroupContactContent`(IN p_recipient_email VARCHAR(255),
+ 
+CREATE   PROCEDURE `up_DSRCreateGroupContactContent`(IN p_recipient_email VARCHAR(255),
 																			IN p_recipient_action TINYINT(3),
 																			IN p_group_contact_id INT(11),
                                                                             OUT p_group_contact_content_id INT(11))
@@ -1071,8 +1073,8 @@ DELIMITER ;
 -- -----------------------------------------------------
 
 DELIMITER $$
-USE `internship`$$
-CREATE DEFINER=`internship`@`%` PROCEDURE `up_DSRCreateReport`(IN p_report_subject varchar(255),
+ 
+CREATE   PROCEDURE `up_DSRCreateReport`(IN p_report_subject varchar(255),
 															   IN p_report_type tinyint(4),
 															   IN p_data_ect varchar(255),
                                                                IN p_user_id int,OUT p_report_id int)
@@ -1101,8 +1103,8 @@ DELIMITER ;
 -- -----------------------------------------------------
 
 DELIMITER $$
-USE `internship`$$
-CREATE DEFINER=`internship`@`%` PROCEDURE `up_DSRCreateReportRecipient`(IN p_report_recipient_email varchar(255),IN p_report_recipient_action TINYINT(3),IN p_report_id int,OUT p_report_recipient_id int)
+ 
+CREATE   PROCEDURE `up_DSRCreateReportRecipient`(IN p_report_recipient_email varchar(255),IN p_report_recipient_action TINYINT(3),IN p_report_id int,OUT p_report_recipient_id int)
 BEGIN -- check report is exist
 
 SET @is_report_exist =
@@ -1130,8 +1132,8 @@ DELIMITER ;
 -- -----------------------------------------------------
 
 DELIMITER $$
-USE `internship`$$
-CREATE DEFINER=`internship`@`%` PROCEDURE `up_DSRCreateTask`(IN p_task_name text, IN p_description text, IN p_target_date date, IN p_task_status int, IN p_remark text, IN p_report_id int, IN p_task_date_defined TINYINT(2), OUT p_new_task_id int)
+ 
+CREATE   PROCEDURE `up_DSRCreateTask`(IN p_task_name text, IN p_description text, IN p_target_date date, IN p_task_status int, IN p_remark text, IN p_report_id int, IN p_task_date_defined TINYINT(2), OUT p_new_task_id int)
 BEGIN -- check report is exist
 
 SET @is_report_exist =
@@ -1164,8 +1166,8 @@ DELIMITER ;
 -- -----------------------------------------------------
 
 DELIMITER $$
-USE `internship`$$
-CREATE DEFINER=`internship`@`%` PROCEDURE `up_DSRGetCustomTaskByUserIdWithPaging`(IN p_user_id INT,IN p_page_numer INT,IN p_page_size INT,OUT p_total_record INT)
+ 
+CREATE   PROCEDURE `up_DSRGetCustomTaskByUserIdWithPaging`(IN p_user_id INT,IN p_page_numer INT,IN p_page_size INT,OUT p_total_record INT)
 BEGIN
 DECLARE v_start INT;
 DECLARE v_total_records INT;
@@ -1190,8 +1192,8 @@ DELIMITER ;
 -- -----------------------------------------------------
 
 DELIMITER $$
-USE `internship`$$
-CREATE DEFINER=`internship`@`%` PROCEDURE `up_DSRPagingPerQuery`(IN p_page_number integer,IN p_size integer,out p_total_records integer,IN sql_query varchar(255))
+ 
+CREATE   PROCEDURE `up_DSRPagingPerQuery`(IN p_page_number integer,IN p_size integer,out p_total_records integer,IN sql_query varchar(255))
 begin
 -- start location default 1
 set @v_start =1 ;
@@ -1229,8 +1231,8 @@ DELIMITER ;
 -- -----------------------------------------------------
 
 DELIMITER $$
-USE `internship`$$
-CREATE DEFINER=`internship`@`%` PROCEDURE `up_DSRUpdateTable`(
+ 
+CREATE   PROCEDURE `up_DSRUpdateTable`(
 									IN p_table_name VARCHAR(255),
 									IN p_column_name VARCHAR(255),
 									IN p_value VARCHAR(255),

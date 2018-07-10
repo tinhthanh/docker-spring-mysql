@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="windows-1252"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:mvc="http://www.springframework.org/schema/mvc"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+                           http://www.springframework.org/schema/beans/spring-beans.xsd
+                           http://www.springframework.org/schema/mvc
+                           http://www.springframework.org/schema/mvc/spring-mvc.xsd
+                           http://www.springframework.org/schema/context
+                           http://www.springframework.org/schema/context/spring-context.xsd ">
+
+    <mvc:annotation-driven />
+    <context:annotation-config/>
+    <context:component-scan base-package="com.pal.intern.*" />
+    
+    
+    <mvc:annotation-driven content-negotiation-manager="mvcContentNegotiationManager">
+        <mvc:argument-resolvers>
+            <bean class="org.springframework.mobile.device.DeviceWebArgumentResolver" />
+        </mvc:argument-resolvers>
+    </mvc:annotation-driven>
+    
+    <mvc:interceptors>
+        <!-- Resolve the device which has generated the request -->
+        <bean id="deviceResolverHandlerInterceptor" class="org.springframework.mobile.device.DeviceResolverHandlerInterceptor"></bean>
+    	
+        <!-- On pre handle, manage the user's site preference (declare after DeviceResolverHandlerInterceptor) -->
+        <bean class="org.springframework.mobile.device.site.SitePreferenceHandlerInterceptor" />
+		    		
+    </mvc:interceptors>
+    
+    
+    
+    <!--Config cors-->
+    
+    <mvc:cors>
+        <mvc:mapping path="/**" allowed-origins="*"  allowed-headers="*" allowed-methods="*" allow-credentials="true"/>		
+    </mvc:cors>
+
+
+    <mvc:resources mapping="/api/**" location="/jsondoc/"/>
+
+
+
+
+    <!--mvc-config-content-negotiation-manager-->
+
+    <mvc:view-resolvers>
+        <mvc:content-negotiation />
+    </mvc:view-resolvers>
+    
+    <bean id="mvcContentNegotiationManager" class="org.springframework.web.accept.ContentNegotiationManagerFactoryBean">
+        <property name="favorPathExtension" value="false" />
+        <property name="favorParameter" value="true" />
+        <property name="parameterName" value="format" />
+        <property name="ignoreAcceptHeader" value="true"/>
+        <property name="useJaf" value="false"/>
+        <property name="defaultContentType" value="application/json"/>
+        
+        <property name="mediaTypes">
+            <map>
+                <entry key="html" value="text/html"/>
+                <entry key="json" value="application/json" />
+                <entry key="xml" value="application/xml" />
+            </map>
+        </property>
+        
+    </bean>
+    
+    <bean id="documentationController" class="org.jsondoc.springmvc.controller.JSONDocController">
+        <constructor-arg name="version" value="2.0" />
+        <constructor-arg name="basePath" value="http://localhost:8080/drs-web-service" />
+        <constructor-arg name="packages">
+            <list>
+                <value>com.pal.intern.rest</value>
+                <value>com.pal.intern</value>
+            </list>
+        </constructor-arg>
+        <property name="playgroundEnabled" value="true" />
+        <property name="displayMethodAs" value="URI" />
+    </bean>
+</beans>    
+    
+    
+    
+   

@@ -24,6 +24,20 @@ services:
             MYSQL_USER: internship
             MYSQL_PASSWORD: internship
             MYSQL_ROOT_PASSWORD: 1234  
+  redmine:
+    image: redmine
+    restart: always
+    ports:
+      - "3000:3000"
+    environment:
+      REDMINE_DB_MYSQL: mysql
+      REDMINE_DB_PASSWORD: example
+  mysql:
+    image: mysql:5.7
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: example
+      MYSQL_DATABASE: redmine              
   web:
     image: tomcat:latest
     # Environment variables do not appear to be getting loaded the first time Tomcat starts!
@@ -38,17 +52,4 @@ services:
     links:
       - db
       - redmine
-  redmine:
-    image: redmine
-    restart: always
-    ports:
-      - "3000:3000"
-    environment:
-      REDMINE_DB_MYSQL: mysql
-      REDMINE_DB_PASSWORD: example
-  mysql:
-    image: mysql:5.7
-    restart: always
-    environment:
-      MYSQL_ROOT_PASSWORD: example
-      MYSQL_DATABASE: redmine   
+ 

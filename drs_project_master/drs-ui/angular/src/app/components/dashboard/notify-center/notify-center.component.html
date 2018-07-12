@@ -1,0 +1,2 @@
+<app-console-bug [(notifyCenter)]="notifyCenter" ></app-console-bug>
+<div  [ngClass]="isShowCenterMs?'show':''" id="toast"><div id="img">  <span class="glyphicon glyphicon-question-sign"></span></div><div id="desc"> {{ this.notifyCenter?.massage}}</div></div>

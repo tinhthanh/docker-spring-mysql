@@ -1,0 +1,31 @@
+.trigger input[type="checkbox"] + span {
+    visibility: hidden;
+    opacity: 0;
+    -webkit-transition: visibility 0s linear 0.33s, opacity 0.33s linear;
+    transition: visibility 0s linear 0.33s, opacity 0.33s linear;
+  }
+  .trigger input[type="checkbox"]:checked + span {
+    visibility: visible;
+    opacity: 1;
+    -webkit-transition-delay: 0s;
+            transition-delay: 0s;
+  }
+  .trigger .msg {
+    display: block;
+    margin-top: 8px;
+    padding: 8px 12px;
+    border: 1px solid #ddd;
+    border-radius: 3px;
+  }
+.stylish-input-group .input-group-addon{
+    background: white !important; 
+}
+.stylish-input-group .form-control{
+	border-right:0; 
+	box-shadow:0 0 0; 
+	border-color:#ccc;
+}
+.stylish-input-group button{
+    border:0;
+    background:transparent;
+}

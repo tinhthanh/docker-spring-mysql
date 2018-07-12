@@ -1,0 +1,8 @@
+<ng-container *ngIf="isLoadingMenu">
+    <div class="pixel-loader"></div>
+</ng-container>
+
+<ng-container *ngIf="!isLoadingMenu">
+    <ng-content></ng-content>
+</ng-container>
+

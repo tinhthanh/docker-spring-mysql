@@ -1,0 +1,30 @@
+.permission {
+  font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+  /* border-collapse: collapse;
+  width: 100%; */
+}
+
+.permission td, #permission th {
+  border: 1px solid #ddd;
+  padding: 8px;
+}
+
+.permission tr:nth-child(even){background-color: #f2f2f2;}
+
+.permission tr:hover {background-color: #ddd;}
+
+.permission th {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: left;
+  background-color: #0190c3;
+  color: white;
+}
+
+.privi-bg th {
+  background-color: #089e71;
+}
+
+.role-form {
+  padding-left: 10px;
+}

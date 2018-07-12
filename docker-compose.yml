@@ -1,33 +1,6 @@
 version: '3.1'
 services:
-  redmine:
-    image: redmine
-    restart: always
-    ports:
-      - "80:8080"
-    environment:
-      REDMINE_DB_MYSQL: db
-      REDMINE_DB_PASSWORD: example
   db:
-    image: mysql:5.7
-    restart: always
-    environment:
-      MYSQL_ROOT_PASSWORD: example
-      MYSQL_DATABASE: redmine
-  web:
-    image: tomcat:latest
-    # Environment variables do not appear to be getting loaded the first time Tomcat starts!
-    environment:
-      JDBC_URL: jdbc:mysql://mysql:3306/internship?connectTimeout=0&amp;socketTimeout=0&amp;autoReconnect=true
-      JDBC_USER: example_db_user
-      JDBC_PASS: example_db_pass
-    ports:
-    - 8080:3000
-    volumes:
-    - ./tomcat/webapps:/usr/local/tomcat/webapps
-    links:
-      - mysql  
-  mysql:
    container_name: linh3-mysql
    image: mysql/mysql-server:5.7
    environment:
@@ -44,11 +17,38 @@ services:
   phpmyadmin:
         image: phpmyadmin/phpmyadmin
         links: 
-            - mysql:mysql
+            - db:db
         ports:
             - 8000:80
         environment:
             MYSQL_USER: internship
             MYSQL_PASSWORD: internship
             MYSQL_ROOT_PASSWORD: 1234  
-   
+  web:
+    image: tomcat:latest
+    # Environment variables do not appear to be getting loaded the first time Tomcat starts!
+    environment:
+      JDBC_URL: jdbc:mysql://db:3306/internship?connectTimeout=0&amp;socketTimeout=0&amp;autoReconnect=true
+      JDBC_USER: internship
+      JDBC_PASS: internship
+    ports:
+    - "80:8080"
+    volumes:
+    - ./tomcat/webapps:/usr/local/tomcat/webapps
+    links:
+      - db
+      - redmine
+  redmine:
+    image: redmine
+    restart: always
+    ports:
+      - "3000:3000"
+    environment:
+      REDMINE_DB_MYSQL: mysql
+      REDMINE_DB_PASSWORD: example
+  mysql:
+    image: mysql:5.7
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: example
+      MYSQL_DATABASE: redmine   

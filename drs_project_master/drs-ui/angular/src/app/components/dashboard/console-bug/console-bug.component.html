@@ -1,0 +1,22 @@
+<div *ngIf="notifyCenter?.details !== null" class="console">
+	<div class="output">
+		<span>Initializing...</span>
+		<span class="green">0.0002ms ok!</span>
+		<span class="seperator">== == == == == == == == == == == == == == == == == ==</span>
+		<pre style="background: #212121;" contenteditable="false"> ___          _    _                  _                                           _          
+				(  _`\       (_ ) ( )_               ( )                                         (_ )        
+				| |_) )  _ _  | | | ,_)   __     ___ | |__        ___    _     ___    ___    _    | |    __  
+				| ,__/'/'_` ) | | | |   /'__`\ /'___)|  _ `\    /'___) /'_`\ /' _ `\/',__) /'_`\  | |  /'__`\
+				| |   ( (_| | | | | |_ (  ___/( (___ | | | |   ( (___ ( (_) )| ( ) |\__, \( (_) ) | | (  ___/
+				(_)   `\__,_)(___)`\__)`\____)`\____)(_) (_)   `\____)`\___/'(_) (_)(____/`\___/'(___)`\____)
+																											 </pre>
+		<span class="seperator">== == == == == == == == == == == == == == == == == ==</span>
+		<span>Seem as error occurred <span class="red">Please fix as soon as possible...</span>!</span>
+		<span class="blue">type '<span class="grey">help</span>' </span><br>
+	</div>
+	<div class="action">
+		<span style="width: 100%; height: auto;">{{ notifyCenter | json }} </span>
+	
+		<textarea class="input" name="input" cols="30" rows="1"></textarea>
+	</div>
+</div>

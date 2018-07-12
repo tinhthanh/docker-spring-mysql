@@ -1,0 +1,51 @@
+<div style="display: none" *ngIf="(rootItem.id.indexOf('_') === -1 )" class="p-col-m-2">          
+    <ng-select [allowClear]="true"
+    [items]="optionChild"
+    (data)="optionChildRefreshValue($event)"
+    (selected)="optionChildSelected($event)"
+    (removed)="optionChildRemoved($event)"
+    placeholder="No city selected">
+    </ng-select>
+</div>
+<div *ngIf="(rootItem.id.indexOf('_') === -1 )" >    
+<div *ngIf="optionStatus ===1 ; then templateSelect">
+    </div>
+    <div   *ngIf="optionStatus ===2 ; then templateInput">
+        </div>
+        <div   *ngIf="optionStatus ===3 ; then templateDate">
+            </div>
+    
+            <div   *ngIf="optionStatus ===4 ; then templateBetweenDate">
+                </div>
+                </div>
+<ng-template #templateInput>
+    <div style="padding: 0 5px 0 5px" class="p-col-m-8" >
+    <input (input)="searchChangeText($event.target.value)" type="text"  class="form-control" value="" required="required" pattern="" title="">
+</div>
+</ng-template>
+<ng-template #templateDate>
+        <div style="padding: 0 5px 0 5px" class="p-col-m-8" >
+                <input   (input)="changeDate($event.target.value)" type="date" class="form-control" value="" required="required" title="">
+            </div>
+</ng-template>
+<ng-template #templateBetweenDate>
+        <div  style="padding: 0 5px 0 5px" class="p-col-m-8" >
+            <div style="padding: 0 5px 0 5px " class="p-col-m-6">
+                    <input  (input)="changeDateBetweenFist($event.target.value)" type="date" class="form-control" value="" required="required" title="">
+            </div>
+            <div class="p-col-m-6">
+                    <input (input)="changeDateBetweenLast($event.target.value)"  type="date" class="form-control" value="" required="required" title="">  
+            </div>
+              
+            </div>
+</ng-template>
+<ng-template #templateSelect>
+        <div *ngIf="(rootItem.id.indexOf('_') === -1 ) && searchEngine.child != null " style="padding: 0 5px 0 5px" class="p-col-m-8">
+                <ng-select  [multiple]="false"
+                [items]="optionChildItem"
+                (data)="optionChildItemRefreshValue($event)"
+                (selected)="optionChildItemSelected($event)"
+                (removed)="optionChildItemRemoved($event)"
+                placeholder="No city selected"></ng-select>
+            </div>
+</ng-template>

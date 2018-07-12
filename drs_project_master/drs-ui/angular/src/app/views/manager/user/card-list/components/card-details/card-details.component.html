@@ -1,0 +1,11 @@
+<div *ngIf="isLoading" class="browser-screen-loading-content">
+        <div class="loading-dots dark-gray">
+          <i></i>
+          <i></i>
+          <i></i>
+          <i></i>
+        </div>
+      </div>
+<span  *ngIf="to?.length === 0 && cc?.length === 0" > No contact </span>
+<span style="color: #3c763d;" *ngFor="let item of to" class="badge"> {{item.contactEmail}} </span>
+<span style="color: #333333" *ngFor="let item of cc" class="badge">{{item.contactEmail }}</span>

@@ -1,0 +1,11 @@
+<ng-container *ngIf="isShow" > 
+    <div *ngIf="items.length !== 1" style="padding-left: 10px;
+    padding-right: 10px;" class="p-col-m-12">
+        <h3>Search by </h3>
+        <ng-select [disabled]="isShowCustomTask" [active]="active" [items]="items"  (data)="refreshValue($event)" (selected)="selected($event)"
+            (removed)="removed($event)" placeholder="Add filter "></ng-select>
+        <!-- <pre>{{itemsToString(value)}}</pre> -->
+        <div>
+        </div>
+    </div>
+</ng-container>

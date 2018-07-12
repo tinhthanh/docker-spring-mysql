@@ -1,0 +1,107 @@
+<header [ngClass]="isFixedMenu?'fixed-menu':''">
+  <div class='container'>
+    <div class='mobile_nav'>
+      <button class='burger' title='Open and close menu'>
+        <span class='mobile_nav__label'>Open and close menu</span>
+        <div class='top stripe'></div>
+        <div class='middle stripe'></div>
+        <div class='bottom stripe'></div>
+      </button>
+    </div>
+    <div class='mobile_menu'>
+      <nav>
+        <ul>
+          <li>
+            <a [routerLink]="'/dashboard/issues-projects'"> Issues </a>
+          </li>
+          <li class='visited'>
+            <a [routerLink]="'/dashboard/projects'"> Project </a>
+          </li>
+
+          <li>
+            <a [routerLink]="'/manager/user/view-report-send'" >My Report </a>
+          </li>
+          <li>
+            <a [routerLink]="'/manager/user/card-list/my-card'" >Card List</a>
+          </li>
+        </ul>
+      </nav>
+    </div>
+    <div class='logo'>
+      <span>
+        <app-menu-loading>
+          <span>PALTECH</span>
+        </app-menu-loading>
+      </span>
+
+      <span> </span>
+    </div>
+
+    <nav class='head_nav'>
+      <ul style="float: left;">
+
+        <li [ngClass]=" rla2.isActive?'visited':''">
+          <a [routerLink]="'/dashboard/issues-projects'" routerLinkActive #rla2="routerLinkActive"> Issues </a>
+        </li>
+        <li [ngClass]=" rla1.isActive?'visited':''">
+            <a [routerLink]="'/dashboard/projects'" routerLinkActive #rla1="routerLinkActive"> Projects </a>
+          </li>
+        <li [ngClass]=" rla4.isActive?'visited':''">
+            <a [routerLink]="'/manager/user/view-report-send'" routerLinkActive #rla4="routerLinkActive">  My Report </a>
+          </li>
+
+        <li [ngClass]=" rla6.isActive?'visited':''">
+          <a [routerLink]="'/manager/user/card-list/my-card'" routerLinkActive #rla6="routerLinkActive"> Card List </a>
+        </li>
+      </ul>
+    </nav>
+    <div class='icons'>
+      <ng-container *ngIf="userInfo">
+       
+        <div class='block'>
+          <a (click)="isShowInfomation = !isShowInfomation ; isShowNotify = false;" [ngStyle]="isShowInfomation?{'color': 'black' }: {}"
+            style=" font-family: cursive;" class='notification' title='Notifications'>
+            {{ userInfo.fullName }}
+            <div *ngIf="isShowInfomation" class="infomation">
+              <div class="user-details">
+                <div class="arrow-up"></div>
+                <div class="details-body">
+                  <div class="title">{{ userInfo.fullName}}'s infomation </div>
+                  <div class="body">
+                    <ng-container *ngIf="userInfo">
+                      <span>
+                        <strong>Email:</strong> {{userInfo.email }}
+                      </span>
+                    </ng-container>
+                    </div>
+                  <div class="footer">
+                      <span *ngIf="isAdmin">
+                        <a [routerLink]="['/manager/admin/manager-permission']">Admin</a>
+                      </span>
+                      <span *ngIf="isAdmin" class="seperate-link">/</span>
+                      <a (click)="logout()" class='user_profile'>Logout</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </a>
+        </div>
+
+      </ng-container>
+      <div *ngIf="!userInfo" class="block">
+        <a [routerLink]="['/dashboard/login']" routerLinkActive #rla5="routerLinkActive" style="    height: 0px;
+                  text-transform: uppercase;
+                  font-weight: 700;
+                  letter-spacing: 0.8px;
+                  position: relative;
+              " title="Login page" class="user_profile amination-hover ">
+          <span [ngStyle]="rla5.isActive?{'color': '#1976d2'}:{}"> Login</span>
+
+        </a>
+      </div>
+    </div>
+  </div>
+</header>
+<main></main>
+<app-notify-center></app-notify-center>
+<app-alert-right></app-alert-right>

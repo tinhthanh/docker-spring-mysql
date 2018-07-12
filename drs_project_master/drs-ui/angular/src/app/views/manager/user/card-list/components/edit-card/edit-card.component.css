@@ -1,0 +1,30 @@
+
+
+.gx-badge {
+    line-height: 1.33;
+    border: solid 1px currentColor;
+    border-radius: 1em;
+    background: linear-gradient(90deg, currentColor 1.7em, transparent 1.7em, transparent);
+    padding-left: .4em;
+    display: inline-block;
+    padding-right: .7em;
+    text-transform: uppercase;
+    vertical-align: middle;
+    transform: translate(0, -2px); /* Looks little nicer when small */
+  }
+  
+  .gx-badge:before {
+    content: '\2716';
+    color: #fff;
+    padding-right: .8em;
+  }
+  .gx-badge:hover {
+      color: #da202085;
+  }
+  .gx-badge--new {
+    color: green;
+  }
+  
+  .gx-badge--warn {
+    color: goldenrod;
+  }

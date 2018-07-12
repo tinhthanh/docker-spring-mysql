@@ -1,0 +1,84 @@
+<main class="d-flex flex-row justify-content-center mt-5">
+
+    <nav class="nav flex-column" style="width: 16rem">
+      <a class="nav-link px-3 py-4 active bg-faded" href="#">
+        <i class="fa fa-fw fa-2x fa-cog float-left mr-3"></i>
+        E-mail server
+      </a>
+      <a class="nav-link px-3 py-4" href="#">
+        <i class="fa fa-fw fa-2x fa-envelope-o float-left mr-3"></i>
+        Notifications
+      </a>
+    </nav>
+  
+    <form class="p-4 bg-faded" style="width: 32rem">
+      <legend class="h4">E-mail server</legend>
+  
+      <div class="btn-group btn-group-justified mb-4">
+        <button class="btn btn-outline-primary" type="button">Custom service</button>
+        <button class="btn btn-outline-primary" type="button">Gmail</button>
+        <button class="btn btn-outline-primary" type="button">Microsoft Outlook.com</button>
+        <button class="btn btn-outline-primary" type="button">Yahoo! Mail</button>
+      </div>
+  
+      <div class="row row-sm">
+        <div class="form-group col-md-8">
+          <label>SMTP server</label>
+          <input class="form-control" type="text" value="smtp.anybiz.com"/>
+        </div>
+        <div class="form-group col-md-4">
+          <label>Port</label>
+          <input class="form-control" type="text" value="465"/>
+        </div>
+      </div>
+  
+      <div class="form-group">
+        <label>Encryption</label>
+        <div>
+          <label class="custom-control custom-radio">
+            <input class="custom-control-input" type="radio" name="radio"/>
+            <span class="custom-control-indicator"></span>
+            <span class="custom-control-description">SSL</span>
+          </label>
+          <label class="custom-control custom-radio">
+            <input class="custom-control-input" type="radio" name="radio"/>
+            <span class="custom-control-indicator"></span>
+            <span class="custom-control-description">TSL</span>
+          </label>
+          <label class="custom-control custom-radio">
+            <input class="custom-control-input" type="radio" name="radio"/>
+            <span class="custom-control-indicator"></span>
+            <span class="custom-control-description">None</span>
+          </label>
+        </div>
+      </div>
+  
+      <div class="form-group">
+      <label class="custom-control custom-checkbox">
+        <input class="custom-control-input" type="checkbox"/>
+        <span class="custom-control-indicator"></span>
+        <span class="custom-control-description">SMTP server requires authentication</span>
+      </label>
+      </div>
+  
+      <div class="form-group">
+      <label class="custom-control custom-checkbox">
+        <input class="custom-control-input" type="checkbox"/>
+        <span class="custom-control-indicator"></span>
+        <span class="custom-control-description">Configure an incoming mail server (POP)</span>
+      </label>
+      </div>
+  
+      <div class="form-group">
+        <button class="btn btn-primary">Send test message</button>
+      </div>
+  
+      <div class="alert alert-danger mb-0">
+        <h4 class="alert-heading h5">Unable to connect</h4>
+        <p class="mb-0">There may be a problem with the E-mail server. Verify the settings or try again later.</p>
+      </div>
+  
+    </form>
+  
+  </main>
+  

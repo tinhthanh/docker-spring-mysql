@@ -1,0 +1,91 @@
+
+                        <span class="brand-name">PALTECH</span>
+<div id="myModal" class="modal">
+    <span class="close">&times;</span>
+    <div class="modal-content" >
+            <div class="container">
+                <div class="sign">
+                    <div *ngIf="isLogin" class="ui-progressbar ui-widget ui-widget-content ui-corner-all ui-progressbar-indeterminate" ng-reflect-ng-class="[object Object]"
+                        ng-reflect-ng-style="[object Object]" style="height: 6px;">
+                        <div class="ui-progressbar-value ui-progressbar-value-animate ui-widget-header ui-corner-all" style="display:block"></div>
+                    </div>
+                    <div style="margin-top: 0px; " class="container clog ">
+                        <div class="row">
+                            <div class="col-12 "></div>
+                            <div style="padding: 20px;
+                    border: 1px solid #0000000f;" class="col-12 col-sm-6 col-md-6 col-lg-4 col-lg-4 content-log">
+                                <div class="brand-logo text-right">
+            
+                                    <span class="brand-name">PALTECH</span>
+                                </div>
+                                <form (ngSubmit)="login() && loginFormGroup.valid" [formGroup]="loginFormGroup" novalidate>
+                                    <h3>Login</h3>
+                                    <div *ngIf="sms" style="display:block" ng-reflect-klass="ui-messages ui-widget ui-corne">
+                                        <a class="ui-messages-close">
+            
+                                        </a>
+                                        <span ng-reflect-klass="ui-messages-icon fa fa-fw fa-2" ng-reflect-ng-class="fa-warning"></span>
+                                        <ul>
+                                            <li class="">
+                                                <span class="ui-messages-summary"></span>
+                                                <span class="ui-messages-detail"> {{ sms }}</span>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="userName">user name </label>
+                                        <input formControlName="userName" type="text" class="form-control" id="userName" placeholder="your user name">
+                                        <div>
+                                            <small class="form-text text-muted" *ngIf="loginFormGroup.controls['userName'].errors && ( loginFormGroup.controls['userName'].dirty || loginFormGroup.controls['userName'].touched)">
+                                                <p style="
+                                        color: silver; " *ngIf="loginFormGroup.controls['userName'].errors.required"> &nbsp;&nbsp; User not null </p>
+                                                <p style="
+                                        color: silver; " *ngIf="loginFormGroup.controls['userName'].errors.pattern"> &nbsp;&nbsp; Valid user formats only </p>
+                                            </small>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="password">password</label>
+                                        <input formControlName="password" type="password" class="form-control" id="password" aria-describedby="passwordlHelp" placeholder="your password ">
+                                        <small class="form-text text-muted" *ngIf="loginFormGroup.controls['password'].errors && ( loginFormGroup.controls['password'].dirty || loginFormGroup.controls['password'].touched)">
+                                            <p style=" color: silver; " *ngIf="loginFormGroup.controls['password'].errors.required"> &nbsp;&nbsp; Password not null </p>
+                                            <p style=" color: silver;  " *ngIf="loginFormGroup.controls['password'].errors.pattern"> &nbsp;&nbsp; Minimum 8 characters, a number, a capital- and a lowercase letter </p>
+                                        </small>
+                                    </div>
+                                    <div class="i_bx">
+                                            <input  formControlName="rememberMe" type="checkbox" id="checkbox-2">
+                                            <label for="checkbox-2" class="label-cbx" id="cbx-2"></label>
+                                            <label for="checkbox-2" class="label-txt">Remember Password ! </label>  
+                                          </div>  
+                                    <div class="button-log">
+                                        <button style="    border: 1px solid silver;
+                                width: 100%;
+                                line-height: 40px;
+                                background: OliveDrab;
+                                color: white;
+                                cursor: pointer;" type="submit" [disabled]="isLogin" [disabled]="!loginFormGroup.valid" class="btn redibtn btn-block"> Login
+                                            <img *ngIf="isLogin" src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA=="
+                                            />
+                                        </button>
+                                    </div>
+                                </form>
+                            </div>
+                            <div  class="col-12 col-sm-3 col-md-3 col-lg-4 col-lg-4 hider-1200" style="
+                            position: relative;
+                        ">
+                        <img src="https://cdn.itviec.com/system/production/employers/logos/1705/pal-tech-logo-170-151.png?1454112601" style="
+                            margin-top: 25%;
+                            top: 60%;
+                            position: absolute;
+                            left: 25%;
+                        ">
+                        </div>
+                        </div>
+                    </div>
+            
+            
+                </div>
+            </div>    
+    </div>
+    <div id="caption"></div>
+  </div>

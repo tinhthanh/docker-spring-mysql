@@ -1,0 +1,198 @@
+#myImg {
+    border-radius: 5px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+#myImg:hover {opacity: 0.7;}
+
+/* The Modal (background) */
+.modal {
+    display: block; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    padding-top: 10%; /* Location of the box */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(255, 255, 255); /* Fallback color */
+    background-color: rgba(255, 255, 255, 0);
+}
+
+/* Modal Content (image) */
+.modal-content {
+    margin: auto;
+    display: block;
+    width: 80%;
+    max-width: 700px;
+}
+
+/* Caption of Modal Image */
+#caption {
+    margin: auto;
+    display: block;
+    width: 80%;
+    max-width: 700px;
+    text-align: center;
+    color: #ccc;
+    padding: 10px 0;
+    height: 150px;
+}
+
+/* Add Animation */
+.modal-content, #caption {    
+    -webkit-animation-name: zoom;
+    -webkit-animation-duration: 0.6s;
+    animation-name: zoom;
+    animation-duration: 0.6s;
+}
+
+@-webkit-keyframes zoom {
+    from {-webkit-transform:scale(0)} 
+    to {-webkit-transform:scale(1)}
+}
+
+@keyframes zoom {
+    from {transform:scale(0)} 
+    to {transform:scale(1)}
+}
+
+/* The Close Button */
+.close {
+    position: absolute;
+    top: 15px;
+    right: 35px;
+    color: #f1f1f1;
+    font-size: 40px;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+.close:hover,
+.close:focus {
+    color: #bbb;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+/* 100% Image Width on Smaller Screens */
+@media only screen and (max-width: 700px){
+    .modal-content {
+        width: 100%;
+    }
+}
+
+
+body,html {
+    height:100%;
+    font-family:'Roboto';
+    color:grey;
+    font-weight:bolder;
+  }
+  .bx {
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    height:100%;
+    padding:5px;
+    margin:5px;
+  }
+  .i_bx {
+    margin:10px;
+  }
+  input[type="checkbox"] {
+    display:none;
+  }
+  .label-txt {
+    cursor:pointer;
+    vertical-align: middle;
+  }
+  .label-cbx {
+    width:20px;
+    height:20px;
+    position:relative;
+    display:inline-block;
+    vertical-align:middle;
+    border:2px solid grey;
+    border-radius:2px;
+    transition:0.3s ease;
+    cursor:pointer;
+    margin-right:7px;
+  }
+  input[type="checkbox"]:checked + .label-cbx {
+    border-color: transparent;
+  }
+  .label-cbx:before {
+    content: '';
+    position: absolute;
+    top: 5px;
+    left: 5px;
+    margin: -10px 0 0 -10px;
+    width: 30px;
+    height: 30px;
+    border-radius: 100%;
+    background: #1976D2;
+    transform: scale(0);
+  }
+  input[type="checkbox"]:checked + .label-cbx:before {
+    transform: scale(1);
+    opacity:0;
+    transition: all 0.6s ease-out;
+  }
+  .label-cbx:after {
+    content:"";
+    position:absolute;
+    top:15px;
+    left:5px;
+    border-bottom:3px solid transparent;
+    border-right:3px solid transparent;
+  }
+  input[type="checkbox"]:checked + .label-cbx:after {
+    animation:0.10s DrawMark ease-out 0.1s;
+    animation-fill-mode:forwards;
+  }
+  @keyframes DrawMark {
+    0% {
+      width:0px;
+      height:0px;
+      transform:translate(0,0) rotate(45deg);
+    }
+    100% {
+      width:7px;
+      height:14px;
+      border-bottom:3px solid #1976D2;
+      border-right:3px solid #1976D2;
+      transform:translate(0,-15px) rotate(45deg);
+    }
+  }
+  /* 2nd checkbox */
+  /* overwrite style */
+  #cbx-2:before {
+    transform:scale(1);
+    opacity:0;
+    background:rgba(25, 118, 210,0.5)
+  }
+  input[type="checkbox"]:checked + #cbx-2:before {
+    animation:0.5s ease-out fadeinout;
+    animation-fill-mode:forwards;
+  }
+  @keyframes fadeinout {
+    0% {
+      opacity:0;
+    }
+    50% {
+      opacity:1;
+    }
+    100% {
+     opacity:0; 
+    }
+  }
+  .container { max-width: 970px !important;}
+  .hider-1200  { display: block;}
+  @media only screen and (max-width: 1200px) {
+      .hider-1200 {
+          display:  none;
+      }
+   }

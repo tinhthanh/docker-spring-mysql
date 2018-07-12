@@ -1,0 +1,32 @@
+.countries {
+    font-family: Helvetica, Arial, sans-serif;
+    font-size: 13px;
+    width: 20em;
+  }
+  .countries .country {
+    line-height: 39px;
+    text-indent: 1em;
+    background: #f5f5f5;
+    margin-bottom: 1px;
+    clear: right;
+    overflow: hidden;
+    transform: translate3d(0, 0, 0); /* Not sure if it helps here :) */
+  }
+  .countries .delete {
+    cursor: pointer;
+    float: right;
+    display: inline-block;
+    margin: 12px 1em;
+    width: 14px;
+    height: 14px;
+    opacity: 0.12;
+    background: url(data:image/svg+xml;base64,PHN2ZyB2ZXJzaW9uPSIxLjEiIGlkPSJkZWxldGUtaWNvbiIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayIgeD0iMHB4IiB5PSIwcHgiIHZpZXdCb3g9Ii0yNTIuNSAzNDggNzQuOSA3NC45IiBzdHlsZT0iZW5hYmxlLWJhY2tncm91bmQ6bmV3IC0yNTIuNSAzNDggNzQuOSA3NC45OyI+PHBhdGggZD0iTS0yMTUsMzQ4Yy0yMC43LDAtMzcuNSwxNi44LTM3LjUsMzcuNWMwLDIwLjcsMTYuOCwzNy41LDM3LjUsMzcuNXMzNy41LTE2LjgsMzcuNS0zNy41Qy0xNzcuNSwzNjQuOC0xOTQuMywzNDgtMjE1LDM0OHogTS0yMTUsNDE2LjFjLTE2LjksMC0zMC42LTEzLjctMzAuNi0zMC42YzAtMTYuOSwxMy43LTMwLjYsMzAuNi0zMC42YzE2LjksMCwzMC42LDEzLjcsMzAuNiwzMC42Qy0xODQuNCw0MDIuNC0xOTguMSw0MTYuMS0yMTUsNDE2LjF6Ii8+PHBhdGggZD0iTS0yMDQuNiwzNzEuNWMtMy41LDMuNS02LjksNi45LTEwLjQsMTAuNGMtMy40LTMuNC02LjktNi45LTEwLjMtMTAuM2MtMy4xLTMuMS04LDEuNy00LjksNC45YzMuNCwzLjUsNi45LDYuOSwxMC4zLDEwLjNjLTMuNCwzLjQtNi45LDYuOS0xMC4zLDEwLjNjLTMuMSwzLjEsMS43LDgsNC45LDQuOWMzLjQtMy40LDYuOS02LjksMTAuMy0xMC4zYzMuNSwzLjUsNi45LDYuOSwxMC40LDEwLjRjMy4xLDMuMSw4LTEuNyw0LjktNC45Yy0zLjUtMy41LTYuOS02LjktMTAuNC0xMC40YzMuNS0zLjUsNi45LTYuOSwxMC40LTEwLjRDLTE5Ni42LDM3My4yLTIwMS41LDM2OC40LTIwNC42LDM3MS41eiIvPjwvc3ZnPg==)
+      no-repeat;
+    transition: opacity 0.15s;
+  }
+  .countries .delete:hover {
+    opacity: 0.5;
+  }
+  .countries .country:hover {
+    background-color: #00000036;
+  }

@@ -1,0 +1,5 @@
+
+<button  (click)="selectcard(item.group_contact_id)"  style="    margin: 2px;" *ngFor="let item of gruopContact" [disabled]="cardDefault === item.group_contact_id"  type="button" class="btn btn-sm btn-default">{{ item.group_contact_name}}
+
+  <span   *ngIf="cardDefault === item.group_contact_id" class="glyphicon btn-glyphicon glyphicon-ok  img-circle " style=" color: #87c711;   padding: 0px;"></span>
+</button> 

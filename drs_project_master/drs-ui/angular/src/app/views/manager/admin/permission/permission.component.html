@@ -1,0 +1,126 @@
+<div class="p-row">
+  <div style="padding-top: 80px;" class="p-container">
+    <div style="background: #ffffff;" class="p-row">
+      <div class="p-col-m-12 ">
+        <div style="padding: 5px; min-height: 134px;" class="panel-body">
+          <div class="row">
+            <div [ngClass]="selectUser != null ? 'col-md-4' : 'col-md-12'" >
+              <legend>
+                  <span class="glyphicon glyphicon-th-list"></span> List Users
+              </legend>
+              <table class="table permission user-bg">
+                <tr>
+                  <th>
+                    User ID
+                  </th>
+                  <th>
+                    Username
+                  </th>
+                  <th>
+                    Full name
+                  </th>
+                  <th>
+                    Action
+                  </th>
+                </tr>
+                <tr *ngFor="let user of userRoleList | async">
+                  <td>
+                    {{user.userId}}
+                  </td>
+                  <td>
+                    {{user.userName}}
+                  </td>
+                  <td>
+                    {{user.fullName}}
+                  </td>
+                  <td>
+                    <button type="button" class="btn btn-primary" (click)="getUserPrivilege(user)">View user's permission</button>
+                  </td>
+                </tr>
+              </table>
+              <nav aria-label="Paging of list user" class="text-center">
+                  <ul class="pagination">
+                    <li class="page-item" (click)="setSelectPage(selectedPage - 1)"><a class="page-link" >Prev</a></li>
+                    <li class="page-item" *ngFor="let i of pageList" (click)="setSelectPage(i)" [ngClass]="{'active': i == selectedPage}" ><a class="page-link" >{{i + 1}}</a></li>
+                    <li class="page-item"><a class="page-link" (click)="setSelectPage(selectedPage + 1)">Next</a></li>
+                  </ul>
+                </nav>
+            </div>
+            <div class="col-md-8" *ngIf="selectUser != null" >
+              <div>
+                <form class="form" #userForm="ngForm">
+                  <legend> <span class="glyphicon glyphicon-plus"></span> Add privilege for user: <strong>{{selectUser.userName}}</strong>   </legend>
+                  <div class="form-inline">
+                    <div class="form-group">
+                      <label for="name">User name:</label>
+           
+                      <select class="form-control" id="sel1" name="userReport" [(ngModel)]="updateUser.userReportId" #userReport="ngModel" required>
+                        <option *ngFor="let user of listUser | async" [value]="user.userId">{{user.userName}}</option>
+                      </select>
+                    </div>
+                    <div class="form-group">
+                      <label>Start date: </label>
+                      <input [ngStyle]="isValidate?{}: {'border-color' : 'red' }" class="form-control" placeholder="yyyy-mm-dd" name="ds"   bsDatepicker  [(ngModel)]="startDate" required
+                        #stDate="ngModel">
+                    </div>
+                    <div class="form-group">
+                      <label>End date: </label>
+                      <input  [ngStyle]="isValidate?{}: {'border-color' : 'red' }"  class="form-control" placeholder="yyyy-mm-dd" name="de" bsDatepicker [(ngModel)]="endDate"
+                        #enDate="ngModel" required>
+                    </div>  
+                    <div class="form-group">
+                      <button type="submit" class="btn btn-success btn-block" (click)="update()" [disabled]="!userForm.form.valid ">Add privilege</button>
+                    </div>
+                  </div>
+                </form>
+                <br>
+              
+              </div>
+              <div>
+                <legend><span class="glyphicon glyphicon-user"></span> Privileges detail</legend>
+                <div>
+                  <table class="table permission privi-bg fixed_header">
+                    <thead>
+                      <tr>
+                        <th>
+                          User
+                        </th>
+                        <th>
+                          Start Date
+                        </th>
+                        <th>
+                          End Date
+                        </th>
+                        <th>
+                          Action
+                        </th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr *ngFor="let p of privilegeList | async">
+                        <td>
+                          {{p.userReportName}}
+                        </td>
+                        <td>
+                          {{printDate(p.startDate)}}
+                        </td>
+                        <td>
+                          {{printDate(p.endDate)}}
+                        </td>
+                        <td>
+                            <button type="button" class="btn btn-danger btn-sm" (click)="delete(p.reportPrivilegesId)">
+                                <span class="glyphicon glyphicon-remove"></span> Remove
+                              </button>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

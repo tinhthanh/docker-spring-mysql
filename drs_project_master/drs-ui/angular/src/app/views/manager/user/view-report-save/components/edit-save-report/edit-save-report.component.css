@@ -1,0 +1,11 @@
+/*edit report save begin*/
+.edit-form-title{
+    text-align: center;
+  }
+.editReport{
+  padding: 10px;
+}
+textarea{
+  resize: none;
+}
+/*edit report save end*/

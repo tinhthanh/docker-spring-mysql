@@ -1,0 +1,79 @@
+<table style="    margin-top: 5px;" class="p-table-reposive">
+  <thead>
+      <tr>
+          <th style="width: 40px;">No.</th>
+          <th>Task Name</th>
+          <th>Description</th>
+          <!-- <th>Status</th>    -->
+          <th>Created On</th>
+          <th style="width: 40px;">&nbsp; A</th>
+
+      </tr>
+  </thead>
+  <tbody>
+      <tr class=" fade-in one " *ngFor="let item of pagedItems; let i  = index">
+          <td style="max-width: 40px;" data-column="Select">
+              {{ i + 1 }}
+              <!-- <label class="trigger">
+                  <input class="checkbox checkbox--red" style="float: left; border: 2px solid #3698db; " type="checkbox">
+              </label> -->
+          </td>
+          <td data-column="Project name"> {{ item.task_name}}</td>
+          <!-- <td data-column="Status"> {{ item.status.name}}</td> -->
+          <td data-column="Subject"> {{ item.description}}</td>
+       
+          <td data-column="Created On"> {{ toStringDate( item.target_date ) }}</td>
+          <td style="max-width: 40px; min-height: 120px; " data-column="">
+              <a   (click)="addItemToday(item)" class=" icon-btn btn-default">
+                  <span style=" color: #ffe699;" class="glyphicon btn-glyphicon glyphicon-plus  img-circle "> </span>
+              </a>
+              <!-- <a *ngIf="item?.isToday === 2"  style="cursor: not-allowed;"  class=" icon-btn btn-default">
+                      <span style=" color: #87c711;" class="glyphicon btn-glyphicon glyphicon-ok  img-circle "></span>
+                  </a> -->
+              <a  (click)="editItemCustomTask(item)" class="icon-btn btn-default">
+                  <span style="    color: #8ea9db;" class="glyphicon btn-glyphicon   glyphicon-edit img-circle "></span>
+              </a>
+              <!-- <a *ngIf="item?.isTomorrow === 3"  style="cursor: not-allowed;"  class=" icon-btn btn-default">
+                      <span style=" color: #87c711;" class="glyphicon btn-glyphicon glyphicon-ok  img-circle "></span>
+                  </a> -->
+          </td>
+      </tr>
+
+  </tbody>
+</table>
+<div class="p-col-m-12">
+  <div class="p-col-m-12">
+      <div class="p-container">
+          <div style="float: right;" class="text-center">
+
+
+              <!-- items being paged -->
+              <!-- <div *ngFor="let item of pagedItems">{{item.name}}</div> -->
+              <!-- pager -->
+              <ul *ngIf="pager.pages && pager.pages.length" class="pagination">
+                  <li [ngClass]="{disabled:pager.currentPage === 1}">
+                      <a style="border-radius: 15px; margin: 0px 2px 0px 2px; " (click)="setPage(1)">First</a>
+                  </li>
+                  <li [ngClass]="{disabled:pager.currentPage === 1}">
+                      <a style="border-radius: 15px; margin: 0px 2px 0px 2px;" (click)="setPage(pager.currentPage - 1)">Previous</a>
+                  </li>
+                  <ng-container *ngFor="let page of pager.pages ; let i = index">
+                      <li [ngClass]="{active:pager.currentPage === page}">
+                          <a  [ngClass]=" (isLoading && pager.currentPage === page) ?'p-loading':''" style=" margin: 0px 2px 0px 2px;" (click)="setPage(page)">{{page}}</a>
+                      </li>
+                      <li *ngIf="i === 6 ">
+                          <a style=" margin: 0px 2px 0px 2px;">...</a>
+                      </li>
+                  </ng-container>
+
+                  <li [ngClass]="{disabled:pager.currentPage === pager.totalPages}">
+                      <a style="border-radius: 15px; margin: 0px 2px 0px 2px;" (click)="setPage(pager.currentPage + 1)">Next</a>
+                  </li>
+                  <li [ngClass]="{disabled:pager.currentPage === pager.totalPages}">
+                      <a style=" border-radius: 15px; margin: 0px 2px 0px 2px;" (click)="setPage(pager.totalPages)">Last</a>
+                  </li>
+              </ul>
+          </div>
+      </div>
+  </div>
+</div>

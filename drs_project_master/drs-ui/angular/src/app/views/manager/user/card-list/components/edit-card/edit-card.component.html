@@ -1,0 +1,64 @@
+<div style="padding-top: 7px;" class="panel panel-default">
+    <div class="panel-heading">
+        <div class="row">
+            <div class="col-lg-12">
+                <h1>
+                    <a (click)="backCardList()" class="btn icon-btn btn-default pull-left">
+                        <span class="glyphicon  glyphicon-arrow-left img-circle"></span> Back list card </a>
+                </h1>
+      </div>
+    </div>
+    </div>
+    <div class="panel-body">
+        <form  *ngIf="groupEdit" action="#" method="post" class="form-horizontal" id="accountSetForm" role="form">
+           
+            <div class="form-group">
+                <label for="name" class="col-sm-2 control-label">Name Card</label>
+                <div class="col-sm-5">
+                  <input type="text" [(ngModel)]="groupEdit.groupContactName" class="form-control" name="name" id="name" placeholder="Name Card">
+                </div>
+                <div class="col-sm-5">
+
+                    <button (click)="changeNameGruop(groupEdit.groupContactId)" [disabled]="!groupEdit.groupContactName" disabled class="btn btn-success btn-circle text-uppercase"
+                        type="submit" id="submitComment">
+                        <img *ngIf="isLoading" src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA=="
+                        />
+                        <span>{{changeOrAdd? 'Change': 'Add'}}</span>
+                    </button>
+                      </div>
+            </div>
+            <div *ngIf="groupEdit.groupContactId !== -1" class="form-group">
+                <label for="email" class="col-sm-2 control-label">Send To </label>
+                <div class="col-sm-10">
+                   <ng-container *ngFor="let item of groupEdit.contactContents" >
+                        <div  (click)="deleteContact(item)" *ngIf="item.contactAction === 1 && item?.status !==2 " class="gx-badge gx-badge--new">{{ item.contactEmail }}</div>
+                        <div  (click)="deleteContact(item)"  *ngIf="item.contactAction === 2 && item?.status !==2 " class="gx-badge">{{ item.contactEmail }}</div>
+                   </ng-container>
+                </div>
+            </div>  
+            <div  *ngIf="groupEdit.groupContactId !== -1" class="form-group">
+                <label for="nickName" class="col-sm-2 control-label">Email</label>
+                <div class="col-sm-5">
+                    <input (input)="chageEmail($event.target.value)" [(ngModel)]="emailValue" type="text" class="form-control" name="nickName"
+                        id="nickName" placeholder="Email ">
+                </div>
+                <div class="col-sm-5">                    
+                    <button (click)="addContactTo()" [disabled]="!isMatchEmail" class="btn btn-success btn-circle text-uppercase" type="submit"
+                        id="submitComment">
+                        <span class="glyphicon glyphicon-send"></span> Add To </button>
+                    <button (click)="addContactCC()" [disabled]="!isMatchEmail" class="btn btn-success btn-circle text-uppercase" type="submit"
+                        id="submitComment">
+                        <span class="glyphicon glyphicon-send"></span> Add CC </button>
+                    </div>
+            </div>
+          
+        
+            <!-- <div class="form-group">
+                <div class="col-sm-offset-2 col-sm-10">                    
+                    <button class="btn btn-success btn-circle text-uppercase" type="submit" id="submitComment"><span class="glyphicon glyphicon-send"></span> Summit </button>
+                </div>
+            </div>     -->
+        </form>
+        
+    </div>
+</div>

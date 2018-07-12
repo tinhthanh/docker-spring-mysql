@@ -1,0 +1,289 @@
+    <div class="p-row">
+    <div style="padding-top: 60px;" class="p-container">
+        <div class="p-row" style="background: #ffffff; ">
+
+            <div class="p-col-m-7">
+                <div class="panel panel-success">
+
+                    <div class="p-col-m-12" style="padding: 5px 0 5px 0px;">
+                        <a [routerLink]="['/manager/user/view-report-send']" class="btn icon-btn btn-muted" style="color: black ">
+                            <span class="glyphicon btn-glyphicon glyphicon-th-list img-circle text-muted"></span> Report Send </a>
+                        <a [routerLink]="['/manager/user/view-report-save']" class="btn icon-btn btn-muted">
+                            <span class="glyphicon btn-glyphicon glyphicon-floppy-disk img-circle text-muted"></span> Report Save </a>
+                        <div style="    padding: 5px;" class="panel-body">
+                            <div class="col-md-12">
+                                    <form  class="form-inline">
+                                            <div  class="form-group">
+                                             <label for="email">  Select User   :</label>
+                                              <select #t class="form-control" (change)="changeSelectUser(t)">
+                                                    <option value="-1" selected="" > Me </option>
+                                                <option value="{{item.userReportId}}"  *ngFor=" let item of listSelect | async " > {{item.userReportName }}</option>
+                                              </select>
+                                            </div>
+                                          </form>
+                            </div>
+                            <table class="p-table-reposive">
+                                <thead>
+                                    <tr>
+                                        <th>ID</th>
+                                        <th>Subject </th>
+                                        <th>Etc</th>
+                                        <th>Time Send</th>
+                                        <th>Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                        <ng-container *ngFor="let item of listReport ; let i  = index">
+                                    <tr *ngIf="item.report_id!== -1">
+                                        <td data-column="First Name"> {{item.report_id}} </td>
+                                        <td data-column="Last Name"> {{ item.report_subject}}</td>
+                                        <td data-column="Job Title"> {{item.data_etc}}</td>
+                                        <td data-column="Time Send">{{ toStringDate(item.action_time) }}</td>
+                                        <td data-column="Action">
+
+                                            <button type="button" (click)="getReportById(item.report_id); hideEditReport(false)" class="btn btn-large btn-block btn-default">
+                                                <span *ngIf="item.isCheck === 2 " class="glyphicon btn-glyphicon glyphicon-ok  img-circle " style=" color: #87c711;"></span>
+                                                <span *ngIf="item.isCheck !== 2 "> View </span>
+                                            </button>
+
+                                            <button type="button" (click)="deleteReportSaved(item)" class="btn btn-large btn-block btn-default">
+                                                <i class="glyphicon btn-glyphicon glyphicon-remove-circle img-circle text-danger"></i>
+                                            </button>
+                                        </td>
+                                    </tr>
+                                    </ng-container>
+                                </tbody>
+                            </table>
+                            <div class="p-col-m-12">
+                                <span class="glyphicon btn-glyphicon  glyphicon-eye-open img-circle text-muted"></span>Showing {{pager.startIndex}} to {{pager.endIndex + 1 }} of {{pager.totalItems}} entries
+                            </div>
+                            <div class="p-col-m-12">
+                                <div class="p-col-m-12">
+                                    <div class="p-container">
+                                        <div style="float: right;" class="text-center">
+
+
+                                            <!-- items being paged -->
+                                            <!-- <div *ngFor="let item of pagedItems">{{item.name}}</div> -->
+                                            <!-- pager -->
+                                            <ul *ngIf="pager.pages && pager.pages.length" class="pagination">
+                                                <li [ngClass]="{disabled:pager.currentPage === 1}">
+                                                    <a style="border-radius: 15px; margin: 0px 2px 0px 2px; " (click)="setPage(1)">First</a>
+                                                </li>
+                                                <li [ngClass]="{disabled:pager.currentPage === 1}">
+                                                    <a style="border-radius: 15px; margin: 0px 2px 0px 2px;" (click)="setPage(pager.currentPage - 1)">Previous</a>
+                                                </li>
+                                                <ng-container *ngFor="let page of pager.pages ; let i = index">
+                                                    <li [ngClass]="{active:pager.currentPage === page}">
+                                                        <a [ngClass]=" (isLoading && pager.currentPage === page) ?'p-loading':''" style=" margin: 0px 2px 0px 2px; border-radius: 50%; "
+                                                            (click)="setPage(page)">{{page}}</a>
+                                                    </li>
+                                                    <li *ngIf="i === 6 ">
+                                                        <a style=" margin: 0px 2px 0px 2px; border-radius: 50%;  ">...</a>
+                                                    </li>
+                                                </ng-container>
+
+                                                <li [ngClass]="{disabled:pager.currentPage === pager.totalPages}">
+                                                    <a style="border-radius: 15px; margin: 0px 2px 0px 2px;" (click)="setPage(pager.currentPage + 1)">Next</a>
+                                                </li>
+                                                <li [ngClass]="{disabled:pager.currentPage === pager.totalPages}">
+                                                    <a style=" border-radius: 15px; margin: 0px 2px 0px 2px;" (click)="setPage(pager.totalPages)">Last</a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+            <div *ngIf="report && !editState" class="p-col-m-5 panel-success ">
+                <div class="panel panel-success">
+                    <div class="p-col-m-12">
+
+                        <a class="btn icon-btn btn-muted" style="color: black ">
+                            <span class="glyphicon btn-glyphicon glyphicon-th-list img-circle text-muted"></span> Task Select </a>
+                    </div>
+
+                    <div style="    padding: 5px;" class="panel-body">
+                        <form class="form-horizontal ng-untouched ng-pristine ng-valid" novalidate="">
+                            <div style="    margin-right: 0px;" class="form-group">
+                                <label class="col-sm-2 control-label" for="disabledInput">To</label>
+                                <div class="col-sm-10">
+                                    <ng-container *ngFor="let item of report.recipients">
+                                        <span *ngIf=" item.reportRecipientAction ===  1" class="badge"> {{ item.reportRecipientEmail }}</span>
+                                    </ng-container>
+
+                                </div>
+                            </div>
+                            <div style="    margin-right: 0px;" class="form-group">
+                                <label class="col-sm-2 control-label" for="disabledInput">CC</label>
+                                <div class="col-sm-10">
+                                    <ng-container *ngFor="let item of report.recipients">
+                                        <span *ngIf=" item.reportRecipientAction ===  2" class="badge"> {{ item.reportRecipientEmail }}</span>
+                                    </ng-container>
+                                </div>
+                            </div>
+                            <div style="    margin-right: 0px;" class="form-group">
+                                <label class="col-sm-2 control-label" for="disabledInput">Subject</label>
+                                <div class="col-sm-10">
+                                    <input style="width: 100%;" value="{{report.report.reportSubject}}" class="form-control" id="disabledInput" placeholder="Subject..."
+                                        type="text">
+                                </div>
+                            </div>
+                        </form>
+
+                        <table *ngIf="itemSelectToDay?.length !== 0  || itemSelectTomorrow?.length !== 0" class="p-table-reposive">
+                            <thead>
+                                <tr>
+                                    <th style="background: #FFC000; color: #333;" colspan="7">TODAY TASKS</th>
+                                </tr>
+                                <tr>
+                                    <th style="max-width: 40px;     background: #FFE699;
+                              color: #333; ">No.</th>
+                                    <th style="    background: #FFE699;
+                              color: #333;">Task</th>
+                                    <th style="    background: #FFE699;
+                              color: #333;">Target date</th>
+                                    <!-- <th>Status</th>    -->
+                                    <th style="    background: #FFE699;
+                              color: #333;">Status</th>
+                                    <th style="    background: #FFE699;
+                              color: #333;">Remark</th>
+
+                                    <th style="width: 40px; background: #FFE699;
+                              color: #333;">&nbsp; A</th>
+
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <ng-container *ngFor="let item of itemSelectToDay ; let i = index">
+                                    <tr *ngIf="item.taskDateDefined === 1 && !(item?.statusHide  === -1) " style="background: #ffffff;" class=" fade-in one ">
+                                        <ng-container>
+                                            <td style="max-width: 40px;" data-column="Select">
+                                                {{i+1}}
+                                                <!-- <label class="trigger">
+                                                          <input class="checkbox checkbox--red" style="float: left; border: 2px solid #3698db; " type="checkbox">
+                                                      </label> -->
+                                            </td>
+                                            <td data-column="Task"> {{ item.taskName}}</td>
+                                            <!-- <td data-column="Status"> {{ item.status.name}}</td> -->
+                                            <td data-column="Target date">
+                                                <div *ngIf="item.targetDate" >
+                                                    {{ toStringDate(item.targetDate) }}
+                                            </div>
+                                            </td>
+                                            <td style="position: relative;" data-column="Status">
+                                                <span class="label" [ngClass]="{'label-warning': item.status<30, 'label-info': item.status>=30 && item.status<70, 'label-success': item.status>=70}">{{item.status}}%</span>
+                                            </td>
+
+                                            <td class="remark" data-column="Remark">
+                                                {{ item.remark}}
+                                            </td>
+                                            <td style="max-width: 40px;" data-column="">
+                                                <a  class=" icon-btn btn-default">
+                                                    <span (click)="forkTaskInSavedReport(item)"  class="glyphicon btn-glyphicon glyphicon-copy  img-circle text-muted" style="
+                                                          font-size: 21px; padding: 3px;    
+                                                      "></span>
+                                                </a>
+                                                <a      class=" icon-btn btn-default" (click)="editSaveReportItem(item)">
+                                                    <span class="glyphicon btn-glyphicon 	fa fa-edit  img-circle text-muted" style="
+                                                        font-size: 21px; padding: 3px;
+                                                    "></span>
+                                                </a>
+
+                                                <a class="icon-btn btn-default">
+                                                    <span style="padding: 3px;" (click)="deleteTaskInSavedReport(item)" class="glyphicon btn-glyphicon  glyphicon-remove-circle img-circle text-danger"></span>
+                                                </a>
+                                            </td>
+                                        </ng-container>
+                                    </tr>
+                                </ng-container>
+
+                                <tr>
+                                    <th style="background: #8EA9DB; color: #333;     text-align: center; " colspan="7">TOMORROW PLAN</th>
+                                </tr>
+                                <tr>
+                                    <th style="max-width: 40px;     background: #8ea9db;
+                                      color: #333; ">No.</th>
+                                    <th style="    background:#8ea9db;
+                                      color: #333;">Task</th>
+                                    <th style="    background: #8ea9db;
+                                      color: #333;">Target date</th>
+                                    <!-- <th>Status</th>    -->
+                                    <th style="    background: #8ea9db;
+                                      color: #333;">Status</th>
+                                    <th style="    background: #8ea9db;
+                                      color: #333;">Remark</th>
+
+
+
+                                    <th style="width: 40px; background: #8ea9db;
+                              color: #333;">&nbsp; A</th>
+
+                                </tr>
+                                <ng-container *ngFor="let item of itemSelectToDay ; let i = index">
+                                    <tr *ngIf="item.taskDateDefined === 2 && !(item?.statusHide  === -1)" class=" fade-in one ">
+                                        <ng-container>
+                                            <td style="max-width: 40px;" data-column="Select">
+                                                {{i+1}}
+                                                <!-- <label class="trigger">
+                                                              <input class="checkbox checkbox--red" style="float: left; border: 2px solid #3698db; " type="checkbox">
+                                                          </label> -->
+                                            </td>
+                                            <td data-column="Task"> {{ item.taskName}}</td>
+                                            <!-- <td data-column="Status"> {{ item.status.name}}</td> -->
+                                            <td data-column="Target date">
+                                                <div *ngIf="item.targetDate" >
+                                                    {{ toStringDate(item.targetDate) }}
+                                            </div>
+                                            </td>
+                                            <td style="position: relative;" data-column="Status">
+                                                <span class="label" [ngClass]="{'label-warning': item.status<30, 'label-info': item.status>=30 && item.status<70, 'label-success': item.status>=70}">{{item.status}}%</span>
+                                            </td>
+
+                                            <td class="remark" data-column="Remark">
+                                                {{ item.remark}}
+                                                <div class="remark-add">
+                                                    <span style="background: none;" class="glyphicon btn-glyphicon glyphicon-plus  img-circle text-muted"></span>
+                                                </div>
+                                            </td>
+                                            <td style="max-width: 40px;" data-column="Action">
+                                                <!-- <a (click)="moveToDay(item)" class=" icon-btn btn-default">
+                                                      <span class="glyphicon btn-glyphicon glyphicon-arrow-up  img-circle text-muted"></span>
+                                                  </a> -->
+                                                <a class=" icon-btn btn-default">
+                                                    <span (click)="forkTaskInSavedReport(item)" class="glyphicon btn-glyphicon 	 glyphicon-copy   img-circle text-muted" style="
+                                                          font-size: 21px; padding: 3px;">
+                                                        </span>
+                                                </a>
+                                                <a  class=" icon-btn btn-default" (click)="editSaveReportItem(item)">
+                                                    <span class="glyphicon btn-glyphicon 	fa fa-edit  img-circle text-muted" style="
+                                                        font-size: 21px; padding: 3px;
+                                                    "></span>
+                                                </a>
+                                                <!-- <a [ngStyle]=" item.status === 100?{'cursor': 'not-allowed'}:{}" class=" icon-btn btn-default" >
+                                                    <span class="glyphicon btn-glyphicon 	fa fa-edit  img-circle text-muted"></span>
+                                                </a> -->
+
+                                                <a class="icon-btn btn-default">
+                                                    <span style="padding: 3px;" (click)="deleteTaskInSavedReport(item)" class="glyphicon btn-glyphicon  glyphicon-remove-circle img-circle text-danger" ></span>
+                                                </a>
+                                            </td>
+                                        </ng-container>
+                                    </tr>
+                                </ng-container>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <app-edit-save-report *ngIf="editState"  (update)="update($event)" (editState)="hideEditReport($event)" [reportSaveItem]="reportSaveItem"></app-edit-save-report>
+        </div>
+    </div>
+</div>

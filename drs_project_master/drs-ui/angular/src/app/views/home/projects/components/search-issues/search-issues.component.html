@@ -1,0 +1,14 @@
+
+      <div style="    margin-top: 5px;" *ngFor="let item of itemsSelect" class="p-col-m-12">
+        <div class="p-col-m-2">
+            <label style="width: 20px ; height: 20px;" class="trigger">
+               
+              </label>
+            <label>{{  item.text}}</label>
+        </div>
+        <app-search-engine-child (eventAddChildSearch)="callBackEventAdd($event)" [rootItem]="item"  ></app-search-engine-child>
+    </div>
+        <!-- <div class="p-col-m-12" style="padding: 5px 0 5px 0px;">
+            <a  (click)="appLy()"  class="btn icon-btn btn-default">
+                <span class="glyphicon btn-glyphicon glyphicon-share img-circle text-muted"></span>Apply </a>
+        </div> -->

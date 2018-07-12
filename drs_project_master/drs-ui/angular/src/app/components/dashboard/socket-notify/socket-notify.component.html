@@ -1,0 +1,45 @@
+<div class="icon"  [attr.data-count]="messenger.length" id="notification">
+  <ng-content>
+
+  </ng-content>
+
+  <div *ngIf="!isShowInfomation" class="user-details" > <div class="arrow-up"></div>
+
+<div *ngIf="isShowNotify"   class="details-body">
+  <div class="title"> Notifytion  </div>
+  <div style=" width: 100%;
+  position: inherit; max-height:230px;
+  overflow-y: auto;
+                "  class="body">
+ <table class="table table-hover">
+    <thead>
+      <tr>
+        <th>Title </th>
+        <th>Time</th>
+        <!-- <th>by</th> -->
+      </tr>
+    </thead>
+    <tbody>
+        <ng-container *ngFor="let item of messenger">
+            <tr>
+                <td>{{item.title}}</td>
+                <td>{{ item.dateTo.getHours() + ':' 
+                    + item.dateTo.getMinutes() + ':' + item.dateTo.getSeconds() }}</td>
+                <!-- <td>{{item.user_send}}</td> -->
+              </tr>
+            </ng-container>
+    </tbody>
+  </table>
+  User online :  <br/>
+  <span  (click)=" model.user =  u "   *ngFor="let u of userOnline " class="badge">{{ u }}</span>
+  <ng-container  *ngIf="model.user"> 
+      <input type="text"  [(ngModel)]="model.messenger"  /> 
+      <button  (click)="sendMessenger()"> send to {{  model.user }} </button>
+  </ng-container>
+
+  </div>
+ 
+  <div class="footer"> Footer  </div>
+</div>
+</div>
+  </div>

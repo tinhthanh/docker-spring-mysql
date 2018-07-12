@@ -1,0 +1,147 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <title>Daily report system</title>
+  <base href="/">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+  rel="stylesheet">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" type="image/x-icon" href="favicon.ico">
+
+</head>
+
+<body>
+  <app-root>
+    <style>
+      app-root {
+        margin: 0;
+        padding: 0;
+        background: #2196f3;
+        width: 100%;
+        height: 100%;
+        position: fixed;
+        top: 0px;
+        left: 0px;
+      }
+
+      app-root .transition-loader {
+        position: absolute;
+        top: 0;
+        left: 0;
+        height: 100%;
+        width: 100%;
+      }
+
+      app-root .transition-loader-inner {
+        transform: translateY(-50%);
+        top: 50%;
+        position: absolute;
+        width: calc(100% - 200px);
+        color: #FFF;
+        padding: 0 100px;
+        text-align: center;
+      }
+
+      app-root .transition-loader-inner label {
+        font-size: 1em;
+        padding: 1%;
+        opacity: 0;
+        display: inline-block;
+      }
+
+      app-root .transition-loader-inner label:after {
+        font-family: FontAwesome;
+        content: '\f111';
+      }
+
+      app-root .transition-loader-inner label:nth-child(1) {
+        -webkit-animation: loader 3s 600ms infinite ease-in-out;
+        animation: loader 3s 600ms infinite ease-in-out;
+      }
+
+      app-root .transition-loader-inner label:nth-child(2) {
+        -webkit-animation: loader 3s 500ms infinite ease-in-out;
+        animation: loader 3s 500ms infinite ease-in-out;
+      }
+
+      app-root .transition-loader-inner label:nth-child(3) {
+        -webkit-animation: loader 3s 400ms infinite ease-in-out;
+        animation: loader 3s 400ms infinite ease-in-out;
+      }
+
+      app-root .transition-loader-inner label:nth-child(4) {
+        -webkit-animation: loader 3s 300ms infinite ease-in-out;
+        animation: loader 3s 300ms infinite ease-in-out;
+      }
+
+      app-root .transition-loader-inner label:nth-child(5) {
+        -webkit-animation: loader 3s 200ms infinite ease-in-out;
+        animation: loader 3s 200ms infinite ease-in-out;
+      }
+
+      app-root .transition-loader-inner label:nth-child(6) {
+        -webkit-animation: loader 3s 100ms infinite ease-in-out;
+        animation: loader 3s 100ms infinite ease-in-out;
+      }
+
+      @keyframes loader {
+        0% {
+          opacity: 0;
+          transform: translateX(-300px) scale(1);
+        }
+        33% {
+          opacity: 1;
+          transform: translateX(0px) scale(2);
+        }
+        66% {
+          opacity: 1;
+          transform: translateX(0px) scale(1);
+        }
+        100% {
+          opacity: 0;
+          transform: translateX(300px) scale(2);
+        }
+      }
+
+      @-webkit-keyframes loader {
+        0% {
+          opacity: 0;
+          -webkit-transform: translateX(-300px);
+        }
+        33% {
+          opacity: 1;
+          -webkit-transform: translateX(0px);
+        }
+        66% {
+          opacity: 1;
+          -webkit-transform: translateX(0px);
+        }
+        100% {
+          opacity: 0;
+          -webkit-transform: translateX(300px);
+        }
+      }
+    </style>
+
+
+    <div class="transition-loader">
+      <div class="transition-loader-inner">
+        <label></label>
+        <label></label>
+        <label></label>
+        <label></label>
+        <label></label>
+        <label></label>
+      </div>
+    </div>
+
+
+  </app-root>
+</body>
+
+</html>

@@ -1,0 +1,237 @@
+<div class="p-row">
+  <div class="p-container" style="  padding: 60 10px 0px 10px;" >
+    <div class="p-row">
+      <div class="p-col-m-12 ">
+        <!-- <div class="p-col-m-12 ">
+
+
+          <div style="margin-top: 20px;
+    padding-top: 20px;" class="panel panel-default">
+            <div class="panel-body">
+
+              <div class="p-col-m-3">
+
+
+                <label class="trigger">
+                  Select All
+                  <input style="float: left;" type="checkbox" class="checkbox checkbox--red" />
+                  <span class="msg">
+                    Slow time process !
+                  </span>
+                </label>
+              </div>
+
+              <div class="p-col-m-9">
+
+                <form action="/hms/accommodations" method="GET">
+
+                  <div class="col-xs-6 col-md-4">
+                    <div class="input-group">
+                      <input type="text" class="form-control" placeholder="Search" id="txtSearch" />
+                      <div class="input-group-btn">
+                        <button class="btn btn-primary" type="submit">
+                          <span class="glyphicon glyphicon-search"></span>
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+
+                </form>
+
+              </div>
+            </div>
+          </div>
+
+
+
+        </div> -->
+
+
+        <div  class="p-col-m-12" style="margin-top: 20px;">
+          <div class="panel panel-default ">
+            <div class="panel-heading">
+              <h3 class="panel-title">List Project in Redmine</h3>
+            </div>
+            <div class="panel-body">
+              <div class="p-col-m-8 p-mobile-timeline">
+
+                <div *ngIf="isShowListSelect;then  templateViewSelect else templateListProjects   ">Loading...</div>
+
+
+              </div>
+              <div style="padding-top: 30px;" class="p-col-m-4 p-mobile-list-task">
+                <div class="p-container" style="background-color: white ; ">
+
+
+
+                  <div *ngIf="false; else templateViewSelect">loading...</div>
+
+
+                </div>
+
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <div *ngIf="false" class="p-col-m-12">
+          <div class="row">
+
+            <div class="col-sm-3">
+              <div class="card card-outline-success mb-3">
+
+                <div class="card-block scroll-list">
+                  <div class="list-group">
+                    <li class="list-group-item list-group-item-action list-group-item-success" [draggable] *ngFor="let item of vegetables" [dragClass]="'active'"
+                      [dragTransitClass]="'active'" [dragData]="item" [dragScope]="item.type" [dragEnabled]="true">
+                      {{item.name}}
+                    </li>
+                  </div>
+                </div>
+
+              </div>
+
+
+            </div>
+
+            <div class="col-sm-3">
+            </div>
+
+            <div class="col-sm-3">
+              <div class="card card-outline-primary mb-3" droppable [dragOverClass]="'drag-target-border-green'" [dropScope]="'vegetable'"
+                [dragHintClass]="'drag-hint'" (onDrop)="onVegetableDrop($event)">
+                <div class="card-header card-inverse card-primary">Drop here</div>
+                <div class="card-block scroll-list">
+                  <li *ngFor="let item of droppedVegetables" class="list-group-item">{{item.name}}</li>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
+<nav class="p-menu">
+  <input type="checkbox" href="#" class="menu-open" name="menu-open" id="menu-open" />
+  <label class="menu-open-button" for="menu-open">
+    <span class="lines line-1"></span>
+    <span class="lines line-2"></span>
+    <span class="lines line-3"></span>
+  </label>
+
+  <a class="menu-item blue" (click)="isShowListSelect = false" tooltip="Select">
+    <i class="fa fa-anchor"></i>
+  </a>
+  <a class="menu-item green" tooltip="Projects" (click)="isShowListSelect = true">
+    <i class="fa fa-coffee"></i>
+  </a>
+  <!--    <a href="#" class="menu-item red"> <i class="fa fa-heart"></i> </a>
+    <a href="#" class="menu-item purple"> <i class="fa fa-microphone"></i> </a>
+    <a href="#" class="menu-item orange"> <i class="fa fa-star"></i> </a> -->
+  <!--    <a href="#" class="menu-item lightblue"> <i class="fa fa-diamond"></i> </a> -->
+</nav>
+<!--             <a class="btn icon-btn btn-default" href="#"><span class="glyphicon btn-glyphicon glyphicon-save img-circle text-muted"></span>Download</a>
+            <a class="btn icon-btn btn-muted" href="#"><span class="glyphicon btn-glyphicon glyphicon-remove-circle img-circle text-muted"></span>Unavailable</a>
+            <a class="btn icon-btn btn-primary" href="#"><span class="glyphicon btn-glyphicon glyphicon-thumbs-up img-circle text-primary"></span>Like</a>
+            <a class="btn icon-btn btn-success" href="#"><span class="glyphicon btn-glyphicon glyphicon-plus img-circle text-success"></span>Add</a>
+            <a class="btn icon-btn btn-info" href="#"><span class="glyphicon btn-glyphicon glyphicon-share img-circle text-info"></span>Share</a>
+            <a class="btn icon-btn btn-warning" href="#"><span class="glyphicon btn-glyphicon glyphicon-minus img-circle text-warning"></span>Remove</a>
+            <a class="btn icon-btn btn-danger" href="#"><span class="glyphicon btn-glyphicon glyphicon-trash img-circle text-danger"></span>Delete</a> -->
+
+
+<ng-template #templateListProjects>
+  <!-- <app-lists-project [(projectList)]="dataFake"></app-lists-project> -->
+  <div *ngIf="true; then templateContent">loading...</div>
+</ng-template>
+<ng-template #templateViewSelect>
+  <div class="panel panel-success">
+    <div class="panel-heading">
+      <h3 class="panel-title">List Project select</h3>
+    </div>
+    <div style="padding: 5px;" class="panel-body">
+        <div *ngIf="listSelect?.length ===0 "  > <span>No data view..</span> </div>
+      <table  *ngIf="listSelect?.length !==0 " class="p-table-reposive">
+        <thead>
+          <tr>
+            <th>Project name</th>
+            <th style="width: 50px;">Action</th>
+
+          </tr>
+        </thead>
+        <tbody>
+         
+          <tr *ngFor="let item of listSelect ">
+            <td data-column="Project name"> {{ item.name }}</td>
+            <td style="width: 100px;" data-column="Action">
+
+              <a class="btn icon-btn btn-default">
+                <span class="glyphicon btn-glyphicon glyphicon-share img-circle text-muted"></span>View</a>
+              <a (click)="removeSelect(item)" class="btn icon-btn btn-danger">
+                <span class="glyphicon btn-glyphicon glyphicon-trash img-circle text-danger"></span>Delete</a>
+            </td>
+          </tr>
+          <!-- <tr>
+            <td data-column="Project name">Studies design with Alexey Brodovitch, art director at Harper's Bazaar, and works as his assistant.</td>
+            <td style="width: 100px;" data-column="Action">
+              <a class="btn icon-btn btn-default">
+                <span class="glyphicon btn-glyphicon glyphicon-share img-circle text-muted"></span>View</a>
+              <a class="btn icon-btn btn-success">
+                <span class="glyphicon btn-glyphicon glyphicon-plus img-circle text-success"></span>Add</a>
+              <a class="btn icon-btn btn-danger">
+                <span class="glyphicon btn-glyphicon glyphicon-trash img-circle text-danger"></span>Remove</a>
+            </td>
+          </tr> -->
+        </tbody>
+      </table>
+      <div *ngIf="listSelect?.length !==0 " class="p-col-m-12" style="padding: 5px 0 5px 0px;">
+        <a  (click)="goToIssues()" class="btn icon-btn btn-default"  >
+          <span class="glyphicon btn-glyphicon glyphicon-share img-circle text-muted"></span>View all</a>
+        <a  (click)="removeAllSelect()" class="btn icon-btn btn-muted" >
+          <span class="glyphicon btn-glyphicon glyphicon-remove-circle img-circle text-muted"></span>Remove all</a>
+      </div>
+    </div>
+  </div>
+</ng-template>
+
+<ng-template #templateContent>
+  <div class="page">
+    <div class="page__demo">
+      <div class="main-container page__container">
+        <div class="timeline">
+          <div *ngFor="let item of listProject" class="timeline__group">
+            <span class="timeline__year">{{ item.yaer }}</span>
+            <div *ngFor="let child of item.data" class="timeline__box">
+              <div class="timeline__date">
+                <span class="timeline__day">{{getMonth(child.createOn)}}</span>
+                  <span class="timeline__month">{{ getDay(child.createOn)}}</span>
+              </div>
+              <div class="timeline__post">
+                <div class="timeline__content">
+                  <p style="position: relative ; ">
+                    <a class="loader"></a>
+                    {{child.name}}
+
+                    <label tooltip=" Click to view description" class="preview">
+                      <input type="checkbox" />
+                      <span style="    max-width: 95%; font-weight: normal ; ">
+                        {{child.description}}
+                      </span>
+                    </label>
+                    <a (click)="addSelect(child.id)" class="btn icon-btn btn-default">
+                      <span class="glyphicon btn-glyphicon glyphicon-plus img-circle text-muted"></span>Add</a>
+
+                  </p>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</ng-template>

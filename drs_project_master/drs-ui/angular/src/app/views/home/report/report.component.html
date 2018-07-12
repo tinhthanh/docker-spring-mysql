@@ -1,0 +1,156 @@
+<div [ngStyle]="!isShow?{'display' : 'none'}:{}"  class="p-container">
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h3 class="panel-title">View Report</h3>
+    </div>
+    <div class="panel-body">
+      <div class="p-col-m-12">
+          <a [routerLink]="['/dashboard/issues-projects']" style="text-decoration:none;"> &nbsp;
+        <button style="margin: 10px;" type="button" class="btn btn-default">
+           Back
+        </button>
+      </a>
+      </div>
+      <div #report>
+        <table style="width: 100%; border-collapse: collapse;" width="0">
+          <tbody>
+            <tr style="height: 15.75pt;">
+              <td style="width: 782.15pt; border: solid windowtext 1.0pt; background: #FFC000; padding: 0in 5.4pt 0in 5.4pt; height: 15.75pt;"
+                colspan="7" width="1043">
+                <p>TODAY TASKS</p>
+              </td>
+            </tr>
+            <tr style="height: 15.75pt;">
+              <td style="width: .4in; border: solid windowtext 1.0pt; border-top: none; background: #FFE699; padding: 0in 5.4pt 0in 5.4pt; height: 15.75pt;"
+                width="38">
+                <p style="text-align: center;">No.</p>
+              </td>
+              <td style="width: 200.3pt; border-top: none; border-left: none; border-bottom: solid windowtext 1.0pt; border-right: solid windowtext 1.0pt; background: #FFE699; padding: 0in 5.4pt 0in 5.4pt; height: 15.75pt;"
+                width="104">
+                <p style="text-align: center;">Task</p>
+              </td>
+              <td style="width: 359.3pt; border-top: none; border-left: none; border-bottom: solid windowtext 1.0pt; border-right: solid windowtext 1.0pt; background: #FFE699; padding: 0in 5.4pt 0in 5.4pt; height: 15.75pt;"
+                colspan="2" width="479">
+                <p style="text-align: center;">Description</p>
+              </td>
+              <td style="width: 85.05pt; border-top: none; border-left: none; border-bottom: solid windowtext 1.0pt; border-right: solid windowtext 1.0pt; background: #FFE699; padding: 0in 5.4pt 0in 5.4pt; height: 15.75pt;"
+                width="113">
+                <p style="text-align: center;">Target date</p>
+              </td>
+              <td style="width: 70.85pt; border-top: none; border-left: none; border-bottom: solid windowtext 1.0pt; border-right: solid windowtext 1.0pt; background: #FFE699; padding: 0in 5.4pt 0in 5.4pt; height: 15.75pt;"
+                width="94">
+                <p style="text-align: center;">Status</p>
+              </td>
+              <td style="width: 156.0pt; border-top: none; border-left: none; border-bottom: solid windowtext 1.0pt; border-right: solid windowtext 1.0pt; background: #FFE699; padding: 0in 5.4pt 0in 5.4pt; height: 15.75pt;"
+                width="208">
+                <p style="text-align: center;">Remark</p>
+              </td>
+              <td style="width: 3.85pt; padding: 0in 0in 0in 0in; height: 15.75pt;" width="5">
+                <p>&nbsp;</p>
+              </td>
+            </tr>
+            <tr *ngFor="let item of today; index as i" [attr.data-index]="i" style="height: 47.25pt;">
+              <td style="width: .4in; border: solid windowtext 1.0pt; border-top: none; padding: 0in 5.4pt 0in 5.4pt; height: 47.25pt;"
+                width="38">
+                <p style="text-align: center;">{{i + 1}}</p>
+              </td>
+              <td style="width: 200.3pt; border-top: none; border-left: none; border-bottom: solid windowtext 1.0pt; border-right: solid windowtext 1.0pt; padding: 0in 5.4pt 0in 5.4pt; height: 47.25pt;"
+                width="104">
+                <p style="text-align: center;">Task : {{ item.task.taskName }}</p>
+              </td>
+              <td style="width: 359.3pt; border-top: none; border-left: none; border-bottom: solid windowtext 1.0pt; border-right: solid windowtext 1.0pt; padding: 0in 5.4pt 0in 5.4pt; height: 47.25pt;"
+                colspan="2" width="479">
+                <p>{{ item.task.description }}</p>
+              </td>
+              <td style="width: 85.05pt; border-top: none; border-left: none; border-bottom: solid windowtext 1.0pt; border-right: solid windowtext 1.0pt; padding: 0in 5.4pt 0in 5.4pt; height: 47.25pt;"
+                width="113">
+                <p style="text-align: center;">
+                  <span style="color: black;">{{ item.task.targetDate|date:'dd/MM/yyyy'}}</span>
+                </p>
+              </td>
+              <td style="width: 70.85pt; border-top: none; border-left: none; border-bottom: solid windowtext 1.0pt; border-right: solid windowtext 1.0pt; padding: 0in 5.4pt 0in 5.4pt; height: 47.25pt;"
+                width="94">
+                <p style="text-align: center;"> {{(item.task.status=== 100)?'Done':(item.task.status <= 0)?'':item.task.status + '%'}} </p>
+              </td>
+              <td style="width: 156.0pt; border-top: none; border-left: none; border-bottom: solid windowtext 1.0pt; border-right: solid windowtext 1.0pt; padding: 0in 5.4pt 0in 5.4pt; height: 47.25pt;"
+                width="208"> {{item.task.remark}} </td>
+              <td style="width: 3.85pt; padding: 0in 0in 0in 0in; height: 47.25pt;" width="5">
+                <p>&nbsp;</p>
+              </td>
+            </tr>
+            <tr style="height: 15.75pt;">
+              <td style="width: 778.3pt; border: solid windowtext 1.0pt; border-top: none; background: #8EA9DB; padding: 0in 5.4pt 0in 5.4pt; height: 15.75pt;"
+                colspan="7" width="1038">
+                <p style="text-align: center;">
+                  <span style="color: black;">TOMORROW PLAN</span>
+                </p>
+              </td>
+              <td style="width: 3.85pt; padding: 0in 0in 0in 0in; height: 15.75pt;" width="5">
+                <p>&nbsp;</p>
+              </td>
+            </tr>
+            <tr style="height: 15.75pt;">
+              <td style="width: .4in;border: solid windowtext 1.0pt;border-top: none;background: #8ea9db;padding: 0in 5.4pt 0in 5.4pt;height: 15.75pt;"
+                width="38">
+                <p style="text-align: center;">No.</p>
+              </td>
+              <td style="width: 200.3pt;border-top: none;border-left: none;border-bottom: solid windowtext 1.0pt;border-right: solid windowtext 1.0pt;background: #8ea9db;padding: 0in 5.4pt 0in 5.4pt;height: 15.75pt;"
+                width="104">
+                <p style="text-align: center;">Task</p>
+              </td>
+              <td colspan="2" style="width: 359.3pt;border-top: none;border-left: none;border-bottom: solid windowtext 1.0pt;border-right: solid windowtext 1.0pt;background: #8ea9db;padding: 0in 5.4pt 0in 5.4pt;height: 15.75pt;"
+                width="479">
+                <p style="text-align: center;">Description</p>
+              </td>
+              <td style="width: 85.05pt;border-top: none;border-left: none;border-bottom: solid windowtext 1.0pt;border-right: solid windowtext 1.0pt;background: #8ea9db;padding: 0in 5.4pt 0in 5.4pt;height: 15.75pt;"
+                width="113">
+                <p style="text-align: center;">Target date</p>
+              </td>
+              <td style="width: 70.85pt;border-top: none;border-left: none;border-bottom: solid windowtext 1.0pt;border-right: solid windowtext 1.0pt;background: #8ea9db;padding: 0in 5.4pt 0in 5.4pt;height: 15.75pt;"
+                width="94">
+                <p style="text-align: center;">Status</p>
+              </td>
+              <td style="width: 156.0pt;border-top: none;border-left: none;border-bottom: solid windowtext 1.0pt;border-right: solid windowtext 1.0pt;background: #8ea9db;padding: 0in 5.4pt 0in 5.4pt;height: 15.75pt;"
+                width="208">
+                <p style="text-align: center;">Remark</p>
+              </td>
+              <td style="width: 3.85pt; padding: 0in 0in 0in 0in; height: 15.75pt;" width="5">
+                <p>&nbsp;</p>
+              </td>
+            </tr>
+            <tr *ngFor="let item of tomorrow; index as i" [attr.data-index]="i" style="height: 47.25pt;">
+              <td style="width: .4in; border: solid windowtext 1.0pt; border-top: none; padding: 0in 5.4pt 0in 5.4pt; height: 47.25pt;"
+                width="38">
+                <p style="text-align: center;">{{i + 1}}</p>
+              </td>
+              <td style="width: 200.3pt; border-top: none; border-left: none; border-bottom: solid windowtext 1.0pt; border-right: solid windowtext 1.0pt; padding: 0in 5.4pt 0in 5.4pt; height: 47.25pt;"
+                width="104">
+                <p style="text-align: center;">Task : {{ item.task.taskName }}</p>
+              </td>
+              <td style="width: 359.3pt; border-top: none; border-left: none; border-bottom: solid windowtext 1.0pt; border-right: solid windowtext 1.0pt; padding: 0in 5.4pt 0in 5.4pt; height: 47.25pt;"
+                colspan="2" width="479">
+                <p [innerHTML]="item.task.description"></p>
+              </td>
+              <td style="width: 85.05pt; border-top: none; border-left: none; border-bottom: solid windowtext 1.0pt; border-right: solid windowtext 1.0pt; padding: 0in 5.4pt 0in 5.4pt; height: 47.25pt;"
+                width="113">
+                <p style="text-align: center;">
+                  <span style="color: black;">{{ item.task.targetDate|date:'dd/MM/yyyy'}}</span>
+                </p>
+              </td>
+              <td style="width: 70.85pt; border-top: none; border-left: none; border-bottom: solid windowtext 1.0pt; border-right: solid windowtext 1.0pt; padding: 0in 5.4pt 0in 5.4pt; height: 47.25pt;"
+                width="94">
+                <p style="text-align: center;"> {{(item.task.status=== 100)?'Done':(item.task.status <= 0)?'':item.task.status + '%'}}</p>
+              </td>
+              <td style="width: 156.0pt; border-top: none; border-left: none; border-bottom: solid windowtext 1.0pt; border-right: solid windowtext 1.0pt; padding: 0in 5.4pt 0in 5.4pt; height: 47.25pt;"
+                width="208">{{item.task.remark}} </td>
+              <td style="width: 3.85pt; padding: 0in 0in 0in 0in; height: 47.25pt;" width="5">
+                <p>&nbsp;</p>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+    </div>
+  </div>
+</div>

@@ -19,7 +19,7 @@
         
         <mysql-connector-java.version>6.0.6</mysql-connector-java.version>
         <commons-dbcp2.version>2.2.0</commons-dbcp2.version>
-        <spring-security.version>5.0.3.RELEASE</spring-security.version>
+        <spring-security.version>5.2.10.RELEASE</spring-security.version>
         <junit.version>4.12</junit.version>
         <javax.servlet-api.version>4.0.0</javax.servlet-api.version>
         

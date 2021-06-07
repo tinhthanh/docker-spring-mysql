@@ -30,7 +30,7 @@
         
         <!--SLF4J version-->
         <jcl-over-slf4j.version>1.7.20</jcl-over-slf4j.version>
-        <logback-classic.version>1.1.7</logback-classic.version>
+        <logback-classic.version>1.2.0</logback-classic.version>
          
         <!--REDMINE-API-JAVA-->
         <redmine-java-api>3.1.0</redmine-java-api>

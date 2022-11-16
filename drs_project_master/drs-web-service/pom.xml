@@ -26,7 +26,7 @@
         <jjwt.version>0.9.0</jjwt.version>
         
         
-        <jackson-version>2.9.3</jackson-version>    
+        <jackson-version>2.12.7.1</jackson-version>    
         
         <!--SLF4J version-->
         <jcl-over-slf4j.version>1.7.20</jcl-over-slf4j.version>
